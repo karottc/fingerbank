@@ -9,6 +9,8 @@ Find what fingerprint matches the most a given DHCP fingerprint.
 Supports several strategies to do so and adding new ones should be relatively easy.
 
 =cut
+use 5.10.1;
+
 use strict;
 use warnings;
 
