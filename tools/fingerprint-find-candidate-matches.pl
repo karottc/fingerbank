@@ -29,36 +29,36 @@ Iterate over all fingerprints calling per_fingerprint_callback()
 =cut
 sub process_fingerprints {
     my ($dhcp_fingerprint_file, $tests) = @_;
-    my $results = {};
+    my $results_ref = {};
     tie %dhcp_fingerprints, 'Config::IniFiles', ( -file => $dhcp_fingerprint_file  );
 
     foreach my $os ( tied(%dhcp_fingerprints)->GroupMembers("os") ) {
         if ( exists( $dhcp_fingerprints{$os}{"fingerprints"} ) ) {
             if ( ref( $dhcp_fingerprints{$os}{"fingerprints"} ) eq "ARRAY" ) {
                 foreach my $dhcp_fingerprint ( @{ $dhcp_fingerprints{$os}{"fingerprints"} } ) {
-                    per_fingerprint_callback($results, $dhcp_fingerprint, $os, $tests);
+                    per_fingerprint_callback($results_ref, $dhcp_fingerprint, $os, $tests);
                 }
             } else {
                 foreach my $dhcp_fingerprint (split(/\n/, $dhcp_fingerprints{$os}{"fingerprints"})) {
-                    per_fingerprint_callback($results, $dhcp_fingerprint, $os, $tests);
+                    per_fingerprint_callback($results_ref, $dhcp_fingerprint, $os, $tests);
                 }
             }
         }
     }
-    return $results;
+    return $results_ref;
 }
 
 sub show_results {
-   my ($results, $tests) = @_;
+   my ($results_ref, $tests) = @_;
 
    foreach my $test (keys %$tests) {
        # grab a couple of the best results according to test's result function
-       my @candidate_fingerprints = &{ $tests->{$test}->{'result'} }($results, $test);
+       my @candidate_fingerprints = &{ $tests->{$test}->{'result'} }($results_ref, $test);
 
        print "\nTest: $test results\n";
        foreach my $fp (@candidate_fingerprints) {
-           my $os = $results->{$fp}->{os};
-           my $result = $results->{$fp}->{$test};
+           my $os = $results_ref->{$fp}->{os};
+           my $result = $results_ref->{$fp}->{$test};
            print "$fp: $os ($dhcp_fingerprints{$os}{description}) as candidate match with result: $result\n";
        }
    }
@@ -66,26 +66,23 @@ sub show_results {
 
 =item per_fingerprint_callback
 
-results is modified in this subroutine
+results_ref is modified in this subroutine
 
 =cut
 sub per_fingerprint_callback {
-    my ($results, $fp, $os, $tests) = @_;
+    my ($results_ref, $fp, $os, $tests) = @_;
 
-    $results->{$fp}->{'os'} = $os;
+    $results_ref->{$fp}->{'os'} = $os;
 
     my @fp = split(',', $fp);
     foreach my $test (keys %$tests) {
-        $results->{$fp}->{$test} = &{ $tests->{$test}->{'process'} }(@fp);
+        $results_ref->{$fp}->{$test} = &{ $tests->{$test}->{'process'} }(@fp);
     }
-}
-
-sub processing_finished_callback {
-    my ($results) = @_;
 }
 
 # XXX implement this one too
 sub perfect_match {
+    my (@fp) = @_;
 
 }
 
@@ -101,10 +98,10 @@ sub longuest_identical_sequence {
 }
 
 sub sort_by_largest_top5 {
-    my ($results, $test_name) = @_;
+    my ($results_ref, $test_name) = @_;
 
     # sorting fingerprints based on test result stored in result hash
-    my @sorted = sort { $results->{$b}->{$test_name} <=> $results->{$a}->{$test_name} } keys %$results;
+    my @sorted = sort { $results_ref->{$b}->{$test_name} <=> $results_ref->{$a}->{$test_name} } keys %$results_ref;
 
     # return best 5 entries
     return @sorted[0 .. 5];
@@ -123,12 +120,12 @@ sub main {
         },
     };
 
-    my $results = process_fingerprints(
+    my $results_ref = process_fingerprints(
         $fingerprint_database, $tests
     );
 
     print "Today's candidate is: $new_fingerprint\n";
-    show_results($results, $tests);
+    show_results($results_ref, $tests);
 }
 
 =head1 AUTHOR
