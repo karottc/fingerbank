@@ -15,7 +15,12 @@ use strict;
 use warnings;
 
 use autodie;
+use Algorithm::Diff qw(LCS);
 use Config::IniFiles;
+use Data::Dumper;
+$Data::Dumper::Indent = 0; # don't indent
+$Data::Dumper::Varname = "result"; # set variable name
+use String::LCSS;
 
 our %dhcp_fingerprints;
 our $fingerprint_to_match;
@@ -63,7 +68,7 @@ sub show_results {
        foreach my $fp (@candidate_fingerprints) {
            my $os = $results_ref->{$fp}->{os};
            my $result = $results_ref->{$fp}->{$test};
-           print "$fp: $os ($dhcp_fingerprints{$os}{description}) as candidate match with result: $result\n";
+           print "$dhcp_fingerprints{$os}{description} ($os): $fp\n" . Dumper($result) . "\n";
        }
    }
 }
@@ -111,21 +116,76 @@ sub count_identical_matches {
     return scalar grep $count{$_} > 1, @fingerprint_to_match;
 }
 
-# TODO this would probably be one of the most interesting modes
-sub longuest_identical_sequence {
-    my ($fp, @fp) = @_;
-}
+=item longuest_identical_sequence
 
-=item sort_by_largest_top5
-
-Sort the results under $test_name and return the five entries with the largest result.
+Find longuest matching sequence between the two fingerprints using Algorithm::Diff's LCS algorithm.
 
 =cut
-sub sort_by_largest_top5 {
+sub longuest_identical_sequence {
+    my ($fp, @fp) = @_;
+
+    return String::LCSS::lcss( $fingerprint_to_match, $fp );
+}
+
+=item algorithm_diff
+
+Find longuest matching sequence between the two fingerprints using Algorithm::Diff's LCS algorithm. 
+This algorithm tolerates some differences.
+
+=cut
+sub algorithm_diff {
+    my ($fp, @fp) = @_;
+
+    return LCS( \@fingerprint_to_match, \@fp );
+}
+
+=item sort_by_largest_int_top5
+
+Sort the results as integers under $test_name and return the five entries with the largest result.
+
+=cut
+sub sort_by_largest_int_top5 {
     my ($results_ref, $test_name) = @_;
 
     # sorting fingerprints based on test result stored in result hash
     my @sorted = sort { $results_ref->{$b}->{$test_name} <=> $results_ref->{$a}->{$test_name} } keys %$results_ref;
+
+    # return best 5 entries
+    return @sorted[0 .. 5];
+}
+
+=item sort_by_largest_str_top5
+
+Sort the results by string size under $test_name and return the five entries with the largest strings.
+
+=cut
+sub sort_by_largest_str_top5 {
+    my ($results_ref, $test_name) = @_;
+
+    # sorting fingerprints based on test result stored in result hash
+    # test result is a string and we are sorting by largest string
+    my @sorted = 
+        sort { length($results_ref->{$b}->{$test_name}) <=> length($results_ref->{$a}->{$test_name}) } 
+        keys %$results_ref
+    ;
+
+    # return best 5 entries
+    return @sorted[0 .. 5];
+}
+
+=item sort_by_largest_arrayref_top5
+
+Sort the results by largest arrayref under $test_name and return the five entries with the largest result.
+
+=cut
+sub sort_by_largest_arrayref_top5 {
+    my ($results_ref, $test_name) = @_;
+
+    # sorting fingerprints based on the length of the result arrayref stored in result hash
+    my @sorted = 
+        sort { @{$results_ref->{$b}->{$test_name}} <=> @{$results_ref->{$a}->{$test_name}} } 
+        keys %$results_ref
+    ;
 
     # return best 5 entries
     return @sorted[0 .. 5];
@@ -152,16 +212,27 @@ sub main {
     $fingerprint_to_match = $fp_from_cli;
     @fingerprint_to_match = split(',', $fingerprint_to_match);
 
+    # TODO turn into an array so that I can specify in what order I want to see the tests' output
     my $tests = {
         'count_identical_matches' => {
             'description' => 'Outputs the fingerprint with the most individual requested options matching',
             'process' => \&count_identical_matches,
-            'result' => \&sort_by_largest_top5,
+            'result' => \&sort_by_largest_int_top5,
         },
         'perfect_match' => {
             'description' => 'Fingerprint perfectly matches with an existing fingerprint',
             'process' => \&perfect_match,
             'result' => \&return_all_true_values,
+        },
+        'algorithm_diff' => {
+            'description' => 'Fingerprints that shares a lot of the same sequences with provided fingerprint',
+            'process' => \&algorithm_diff,
+            'result' => \&sort_by_largest_arrayref_top5,
+        },
+        'longuest_common_substring' => {
+            'description' => 'Fingerprints that shares the longuest sequence with provided fingerprint',
+            'process' => \&longuest_identical_sequence,
+            'result' => \&sort_by_largest_str_top5,
         },
     };
 
