@@ -1,4 +1,4 @@
-#!/opt/local/bin/perl
+#!/usr/bin/perl
 =head1 NAME
 
 fingerbank-dhcp-most-matches.pl 
