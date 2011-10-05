@@ -41,4 +41,4 @@ received will be developped.
 
 Finds the closest match of a given fingerprint. Example usage:
 
-    $ tools/fingerprint-find-candidate-matches.pl '1,3,6,15,28,12,7,9,42,48,49,26,44,45,46,47' ./dhcp_fingerprints.conf 
+    $ tools/fingerprint-find-candidate-matches.pl ./dhcp_fingerprints.conf '1,3,6,15,28,12,7,9,42,48,49,26,44,45,46,47' 

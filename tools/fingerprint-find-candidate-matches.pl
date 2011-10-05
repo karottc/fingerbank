@@ -110,7 +110,7 @@ sub sort_by_largest_top5 {
 
 
 sub main {
-    my ($new_fingerprint, $fingerprint_database) = @_;
+    my ($fingerprint_database, $new_fingerprint) = @_;
     @find_closest_of = split(',', $new_fingerprint);
 
     my $tests = {
