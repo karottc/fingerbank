@@ -18,7 +18,8 @@ use autodie;
 use Config::IniFiles;
 
 our %dhcp_fingerprints;
-our @find_closest_of;
+our $fingerprint_to_match;
+our @fingerprint_to_match; # splitted on ,
 
 main(@ARGV);
 
@@ -56,6 +57,9 @@ sub show_results {
        my @candidate_fingerprints = &{ $tests->{$test}->{'result'} }($results_ref, $test);
 
        print "\nTest: $test results\n";
+       print "Description: $tests->{$test}->{description}\n";
+       unless (@candidate_fingerprints) { print "No results...\n"; }
+
        foreach my $fp (@candidate_fingerprints) {
            my $os = $results_ref->{$fp}->{os};
            my $result = $results_ref->{$fp}->{$test};
@@ -66,6 +70,7 @@ sub show_results {
 
 =item per_fingerprint_callback
 
+This callback calls every process hook sending both the fingerprint string and a splitted fingerprint array.
 results_ref is modified in this subroutine
 
 =cut
@@ -76,27 +81,46 @@ sub per_fingerprint_callback {
 
     my @fp = split(',', $fp);
     foreach my $test (keys %$tests) {
-        $results_ref->{$fp}->{$test} = &{ $tests->{$test}->{'process'} }(@fp);
+        $results_ref->{$fp}->{$test} = &{ $tests->{$test}->{'process'} }($fp, @fp);
     }
 }
 
-# XXX implement this one too
+=item perfect_match
+
+Returns 1 if given fingerprint perfectly matches $fingerprint_to_match. 
+0 otherwise.
+
+=cut
 sub perfect_match {
-    my (@fp) = @_;
+    my ($fp, @fp) = @_;
 
+    return 1 if ($fp =~ /^$fingerprint_to_match$/);   
+    return 0;
 }
 
+=item count_identical_matches
+
+Returns number of options id that matched between given fingerprint and fingerprint to match.
+Order of options is not relevant.
+
+=cut
 sub count_identical_matches {
-    my (@fp) = @_;
+    my ($fp, @fp) = @_;
     my %count;
-    map $count{$_}++ , @find_closest_of, @fp;
-    return scalar grep $count{$_} > 1, @find_closest_of;
+    map $count{$_}++ , @fingerprint_to_match, @fp;
+    return scalar grep $count{$_} > 1, @fingerprint_to_match;
 }
 
+# TODO this would probably be one of the most interesting modes
 sub longuest_identical_sequence {
-    my (@fp) = @_;
+    my ($fp, @fp) = @_;
 }
 
+=item sort_by_largest_top5
+
+Sort the results under $test_name and return the five entries with the largest result.
+
+=cut
 sub sort_by_largest_top5 {
     my ($results_ref, $test_name) = @_;
 
@@ -107,10 +131,26 @@ sub sort_by_largest_top5 {
     return @sorted[0 .. 5];
 }
 
+=item return_all_true_values
+
+Everything that has a true value result under $test_name will be returned.
+
+=cut
+sub return_all_true_values {
+    my ($results_ref, $test_name) = @_;
+
+    my @true_values;
+    foreach my $fp (keys %$results_ref) {
+        push @true_values, $fp if ($results_ref->{$fp}->{$test_name});
+    }
+
+    return @true_values;
+}
 
 sub main {
-    my ($fingerprint_database, $new_fingerprint) = @_;
-    @find_closest_of = split(',', $new_fingerprint);
+    my ($fingerprint_database, $fp_from_cli) = @_;
+    $fingerprint_to_match = $fp_from_cli;
+    @fingerprint_to_match = split(',', $fingerprint_to_match);
 
     my $tests = {
         'count_identical_matches' => {
@@ -118,13 +158,18 @@ sub main {
             'process' => \&count_identical_matches,
             'result' => \&sort_by_largest_top5,
         },
+        'perfect_match' => {
+            'description' => 'Fingerprint perfectly matches with an existing fingerprint',
+            'process' => \&perfect_match,
+            'result' => \&return_all_true_values,
+        },
     };
 
     my $results_ref = process_fingerprints(
         $fingerprint_database, $tests
     );
 
-    print "Today's candidate is: $new_fingerprint\n";
+    print "Today's candidate is: $fingerprint_to_match\n";
     show_results($results_ref, $tests);
 }
 
