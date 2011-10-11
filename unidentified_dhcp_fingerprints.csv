@@ -11,7 +11,7 @@
 "58,59,1,28,121,33,3,12,119,15,6,40,41,42,26,17,120,9,7,44,45,46,47"	"Universal Global Scientific Industrial Co., Ltd"	"RadioPST-Rivendell"	"Very similar to Puppy and Gentoo linux"	"Unidentified Linux"
 "58,59,1,28,121,33,3,12,119,15,6,40,41,42,26,17,120,9,7,44,45,47"	"Quanta Computer Inc."		"Looks like another linux variant (which one?)"	"Unidentified Linux"
 "1,3,6,15,28,12,7,9,42,48,49,26,44,45,46,47"	"CANON INC."			
-43	"Symbol Technologies Wholly owned Subsidiary of Motorola"			
+43	"Symbol Technologies Wholly owned Subsidiary of Motorola"		"If you monitor INFORM packets with packetfence this could be Adobe Flash Player.  If it is it typically has ""Adobe Flash Proxy Auto-Discovery"" for a vendor code."	
 54				
 "54,51,58,59,1,3,6,15,28,43"	"AirDefense, Inc."		"Similar to UniData VoIP or Linux"	
 "1,3,43,44,46,47,6,33,121"	"Samsung Electronics"		"Similar to TP-Link Router, Windows, Clipcomm VoIP"	
