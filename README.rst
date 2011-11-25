@@ -50,6 +50,13 @@ Finds the closest match of a given fingerprint. Example usage:
 
     $ tools/fingerprint-find-candidate-matches.pl ./dhcp_fingerprints.conf '1,3,6,15,28,12,7,9,42,48,49,26,44,45,46,47' 
 
+* fingerprint-trim-existing.pl
+
+Outputs only unknown DHCP fingerprints from a given file. Useful to trim old
+submissions with lots of entries.
+
+    $ tools/fingerprint-trim-existing.pl ./dhcp_fingerprints.conf submission-email.txt
+
 License
 =======
 
