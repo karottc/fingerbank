@@ -18,6 +18,8 @@ use Config::IniFiles;
 use IO::File;
 
 our %dhcp_fingerprints;
+# TODO expose behind cli flag
+my $show_found = 0;
 
 main(@ARGV);
 
@@ -47,7 +49,7 @@ sub fingerprint_exists {
                 foreach my $dhcp_fingerprint ( @{ $dhcp_fingerprints{$os}{"fingerprints"} } ) {
 
                     if (fingerprint_matches($dhcp_fingerprint, $candidate_fingerprint)) {
-                        $found = 1;
+                        $found = $dhcp_fingerprints{$os}{'description'};
                         last;
                     }
 
@@ -56,7 +58,7 @@ sub fingerprint_exists {
                 foreach my $dhcp_fingerprint (split(/\n/, $dhcp_fingerprints{$os}{"fingerprints"})) {
 
                     if (fingerprint_matches($dhcp_fingerprint, $candidate_fingerprint)) {
-                        $found = 1;
+                        $found = $dhcp_fingerprints{$os}{'description'};
                         last;
                     }
 
@@ -103,10 +105,15 @@ sub main {
     print "The following fingerprints are not currently in fingerbank's database:\n";
     print "----------------------------------------------------------------------\n";
     while (defined(my $line = $io->getline)) {
+         chomp($line);
          my $candidate_fp = extract_fingerprint($line);
+
          next if (!$candidate_fp);
+
          my $found = fingerprint_exists($candidate_fp);
-         print $line if (!$found);
+         print $line . "\n" if (!$found);
+
+         print "$line -> $found\n" if ($found && $show_found);
     }
 }
 
