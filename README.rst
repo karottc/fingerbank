@@ -65,7 +65,9 @@ Versioning is managed as follow :
 Version x.y.z
 
 z -> incremented when you add/modify fingerprints
+
 y -> incremented when you add/modify Classes
+
 x -> incremented when you add/modify database structure or tools 
 
 License
