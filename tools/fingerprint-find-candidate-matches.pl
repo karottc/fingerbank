@@ -12,7 +12,7 @@ Supports several strategies to do so and adding new ones should be relatively ea
 use 5.10.1;
 
 use strict;
-use warnings;
+#use warnings;
 
 use autodie;
 use Algorithm::Diff qw(LCS);
