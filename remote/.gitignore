@@ -1,0 +1,5 @@
+# TO BE REMOVED ONCE NEW CODE WILL BE MERGED IN
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore
