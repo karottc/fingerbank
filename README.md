@@ -7,6 +7,8 @@ It is a database for device fingerprinting based on different properties (DHCP f
 DHCP vendors, OUI, user-agents, ...) allowing your applications to fully detect then handle 
 a custom workflow based on the device type.
 
+Project homepage: [http://fingerbank.org](http://fingerbank.org)
+
 upstream
 --------
 Codebase of the master Fingerbank database / interface.
