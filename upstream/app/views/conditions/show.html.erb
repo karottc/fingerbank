@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @condition.value %>
+</p>
+
+<p>
+  <strong>Rule:</strong>
+  <%= @condition.rule_id %>
+</p>
+
+<%= link_to 'Edit', edit_rule_condition_path(@rule, @condition) %> |
+<%= link_to 'Back', rule_conditions_path %> |
+<%= link_to 'Show rule', rule_conditions_path %> |
+<%= link_to 'Edit rule', rule_conditions_path %>

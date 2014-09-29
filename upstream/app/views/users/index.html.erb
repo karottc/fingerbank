@@ -1,0 +1,5 @@
+<h3>Admin users</h3>
+<%= render :partial => 'users', :locals => {:users => User.admins} %>
+
+<h3>Normal users</h3>
+<%= render :partial => 'users', :locals => {:users => User.community} %>

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @rule.value %>
+</p>
+
+<% if @rule.device_discoverer %>
+  <p>
+    <strong>Device discoverer:</strong>
+    <%= @rule.device_discoverer.description %>
+  </p>
+<% end %>
+
+<% if @rule.version_discoverer %>
+  <p>
+    <strong>Version discoverer:</strong>
+    <%= @rule.version_discoverer.description %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Computed:</strong>
+  <%= @rule.computed %>
+</p>
+
+<%= link_to 'Edit', edit_rule_path(@rule) %> |
+<%= render 'back' %>

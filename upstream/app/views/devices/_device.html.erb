@@ -1,0 +1,10 @@
+<% if device.approved || current_user_admin? %> 
+  <li>
+  <span class="<%=device == @device ? "selected" : "" %>">
+  <%= link_to '', device, :class => "btn-show" %>
+  <%= link_to '', edit_device_path(device), :class => "btn-edit" if current_user_admin? %>
+  <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-delete" if current_user_admin? %>
+  <%= device.name %>
+  </span>
+  </li>
+<% end %>

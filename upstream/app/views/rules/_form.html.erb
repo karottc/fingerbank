@@ -1,0 +1,55 @@
+<%= form_for(@rule) do |f| %>
+  <% if @rule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rule.errors.count, "error") %> prohibited this rule from being saved:</h2>
+
+      <ul>
+      <% @rule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="field">
+    <%= f.label :device_discoverer %>
+    <%= f.collection_select(:device_discoverer_id, Discoverer.all, :id, :description, :include_blank => true) %>
+  </div> 
+
+  <div class="field">
+    <%= f.label :version_discoverer %>
+    <%= f.collection_select(:version_discoverer_id, Discoverer.all, :id, :description, :include_blank => true) %>
+  </div>
+
+  <input name="rule[condition_ids][]" value="" type="hidden">
+  <% @rule.conditions.each do |condition| %>
+    <div>
+      <button onclick="javascript:$(this).parent().remove()">-</button>
+      <a href="<%= edit_rule_condition_path(@rule, condition) %>">edit</a>
+      <input name="rule[condition_ids][]" value="<%=condition.id%>" type="hidden">
+      <span><%= condition.key %> : <%= condition.value %></span>
+    </div>
+  <% end %>
+
+  <div>
+    <h4>New condition</h4>
+    <%= fields_for @condition do |c| %>
+      <div class="field"> 
+        <%= c.label :key %>
+        <%= c.text_field :key %>
+      </div>
+      <div class="field"> 
+        <%= c.label :value %>
+        <%= c.text_field :value %>
+      </div>
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

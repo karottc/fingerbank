@@ -1,0 +1,9 @@
+<% @devices.each do |device| %>
+  <p>
+  <%= link_to '', approve_device_path(device), :class => 'btn btn-success glyphicon glyphicon-ok' %>
+  <%= link_to '', device_path(device), :class => 'btn-show' %>
+  <%= link_to '', edit_device_path(device), :class => 'btn-edit' %>
+  <%= link_to '', device, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn-delete" %>
+  <%= device.full_path %>
+  </p>
+<% end %>

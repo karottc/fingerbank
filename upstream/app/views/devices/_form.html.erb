@@ -1,0 +1,45 @@
+<%= form_for(@device) do |f| %>
+  <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this o from being saved:</h2>
+
+      <ul>
+      <% @device.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mobile %>
+    <%= f.check_box :mobile %>
+  </div>
+
+  <div class="field">
+    <%= f.label :inherit %>
+    <%= f.check_box :inherit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tablet %>
+    <%= f.check_box :tablet %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Parent" %><br/>
+    <%= f.hidden_field :parent_id %>
+    <%= render :partial => 'devices/devices_selection', :locals => {:set => '#device_parent_id', :selected => @device.parent} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+

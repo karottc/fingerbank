@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Description</h3>
+<%= @discoverer.description %>
+
+<h3>Priority</h3>
+<%= @discoverer.priority %>
+
+<h3>Device</h3>
+<%= @discoverer.device.full_path %>
+
+<h3>Version</h3>
+<%= @discoverer.version %>
+
+<h3>Device rules</h3>
+<table>
+<th></th>
+<th></th>
+<th></th>
+<th>Rule id</th>
+<th>Computed rule</th>
+<% @discoverer.device_rules.each do |rule| %>
+  <tr>
+  <td><%= link_to '', rule, :class => "btn-show" %></td>
+  <td><%= link_to '', edit_rule_path(rule), :class => "btn-edit" if current_user_admin? %></td>
+  <td><%= link_to '', rule, method: :delete, :data => { confirm: 'Are you sure?' }, :class => "btn-delete" if current_user_admin? %></td>
+  <td><%= rule.id %></td>
+  <td><%= rule.computed %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3>Version rules</h3>
+<table>
+<th></th>
+<th></th>
+<th></th>
+<th>Rule id</th>
+<th>Computed rule</th>
+<% @discoverer.version_rules.each do |rule| %>
+  <tr>
+  <td><%= link_to '', rule, :class => "btn-show" %></td>
+  <td><%= link_to '', edit_rule_path(rule), :class => "btn-edit" if current_user_admin?%></td>
+  <td><%= link_to '', rule, method: :delete, :data => { confirm: 'Are you sure?' }, :class => "btn-delete" if current_user_admin? %></td>
+  <td><%= rule.id %></td>
+  <td><%= rule.computed %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_discoverer_path(@discoverer) if current_user_admin? %> 
+<%= link_to 'Back to Device', device_path(@discoverer.device) %>

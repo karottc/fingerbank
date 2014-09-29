@@ -1,0 +1,12 @@
+<h1>Download the Fingerbank database</h1>
+
+<p>You can download the latest computed data of the Fingerbank database.</p>
+<p>This will give you all the discovered combinations with their respective score.</p>
+<p>This database is packaged as SQLite3</p>
+
+<p>
+  You can also download the database through our API by using this URL :
+  <%= root_url %>api/v1/download?key=<%= @current_user.key %>
+</p>
+
+<%= link_to "Click here to download", "#{api_v1_download_path}?key=#{@current_user.key}" %> 

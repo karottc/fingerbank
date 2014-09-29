@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+Name : <%= @device.name %> <br/>
+Mobile : <%= @device.is_mobile? %> <br/>
+Tablet : <%= @device.tablet %> <br/>
+Full path : <%= @device.full_path %> <br/>
+
+<h3>Hierarchy</h3>
+<%= render :partial => 'childs', :locals => {:device => @top_level_parent } %>
+
+<h3>
+  Discoverers 
+  <% if current_user_admin? %>
+    <a href="<%= new_discoverer_path %>?device_id=<%= @device.id %>">New</a>
+  <% end %>
+</h3>
+<div  style="height:300px;overflow-y:scroll">
+<table>
+<% @device.discoverers.each do |discoverer| %>
+  <tr>
+    <td><a href="<%= discoverer_path discoverer %>"><%= discoverer.description %></a></td>
+  </tr>
+<% end %>
+</table>
+</div> 
+
+<h3>Matching combinations</h3>
+<div  style="height:300px;overflow-y:scroll">
+<table>
+<% @device.combinations.each do |combination| %>
+  <tr>
+    <td><%= combination.dhcp_fingerprint.value %></td>
+    <td><%= combination.user_agent.value %></td>
+    <td><%= combination.dhcp_vendor.value %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<%= link_to 'New', new_device_path if current_user_admin? %> 
+<%= link_to 'Edit', edit_device_path(@device) if current_user_admin? %> 
+<%= link_to 'Back', devices_path %>

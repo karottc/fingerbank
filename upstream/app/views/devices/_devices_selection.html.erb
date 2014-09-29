@@ -1,0 +1,40 @@
+<!-- Button trigger modal -->
+<h5 id="device_display" ><%= selected ? selected.full_path : 'Not selected' %></h5>
+<button type="button" id="device_selection_button" class="btn btn-primary" data-toggle="modal" data-target="#device_selection_modal">
+  Select Device 
+</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="device_selection_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" style="overflow-y:scroll">
+        <% Device.top_level.each do |device| %>
+          <%= render :partial => 'devices/childs_selection', :locals => {:device => device} %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to "Unselect", 'javascript:void(0)', :class => 'device_selection btn btn-warning', 'data-device-id' => '' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#device_selection_modal').on('show.bs.modal', function () {
+    $('.modal-body').css('height',$( window ).height()*0.6);
+  });
+  $('#device_selection_modal .device_selection').click(function(){
+    $("<%= set %>").val($(this).attr('data-device-id'))
+    var content = $(this).html()
+    if (content == "Unselect") content = "Not selected"
+    $("#device_display").html(content)
+    $('#device_selection_modal').modal('hide')
+  })
+</script>

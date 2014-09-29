@@ -1,0 +1,73 @@
+<%= form_for(@combination) do |f| %>
+  <% if @combination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@combination.errors.count, "error") %> prohibited this combination from being saved:</h2>
+
+      <ul>
+      <% @combination.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label "What is the device ?" %><br/>
+    <%= f.hidden_field :device_id %>
+    <%= render :partial => 'devices/devices_selection', :locals => {:set => '#combination_device_id', :selected => nil} %>
+    <a id="new_device" href="javascript:void(0)">Not listed ?</a>
+  </div>
+  <div class="field">
+    <%= f.label "What is the version of the device ?" %><br/>
+    <%= f.text_field :version %>
+  </div>
+
+
+  <h3>Enter the information you have for your device.</h3>
+
+  <div class="field">
+    <%= label_tag 'User Agent' %><br>
+    <%= text_area_tag 'combination[user_agent_value]', @initial_values[:user_agent_value] %>
+  </div>
+  <div class="field">
+    <%= label_tag 'DhcpFingerprint' %><br>
+    <%= text_field_tag 'combination[dhcp_fingerprint_value]', @initial_values[:dhcp_fingerprint_value] %>
+  </div>
+  <div class="field">
+    <%= label_tag 'DHCP vendor' %><br>
+    <%= text_field_tag 'combination[dhcp_vendor_value]', @initial_values[:dhcp_vendor_value] %>
+  </div>
+  <div class="field">
+    <%= label_tag 'MAC address' %><br>
+    <%= text_field_tag 'combination[mac_value]', @initial_values[:mac_value] %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>
+
+<script>
+  $('#new_combination #new_device').click(function(e){
+    e.preventDefault()
+    $('#device_creation_modal').modal('show')
+  }) 
+</script>
+
+
+<div class="modal fade" id="device_creation_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width:650px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+          <iframe style="height:500px;width:600px;" src="<%= community_new_device_path %>"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+

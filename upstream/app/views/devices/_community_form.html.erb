@@ -1,0 +1,51 @@
+<%= form_for(@device) do |f| %>
+  <% if @device.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@device.errors.count, "error") %> prohibited this o from being saved:</h2>
+
+      <ul>
+      <% @device.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Parent" %><br/>
+    <%= f.hidden_field :parent_id %>
+    <%= render :partial => 'devices/devices_selection', :locals => {:set => '#device_parent_id', :selected => @device.parent} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<script>
+  $('#new_device').submit(function(e){
+    e.preventDefault()
+    alert("youpi")
+
+    $.post('<%= community_new_device_path %>.json', $('#new_device').serialize(), function(response){
+      console.log(response)
+      console.log(parent)
+      $(parent.document.getElementById('combination_device_id')).val(response.id)
+      $(parent.document.getElementById('device_display')).html(response.name)
+      // for some reason bootstrap doesn't like the modal being hidden from here
+      // so we hide the backdrop and the modal
+      $(parent.document.getElementById('device_creation_modal')).hide()
+      $(parent.document).find('.modal-backdrop').hide()
+
+      $(parent.document.getElementById('new_device')).hide()
+      $(parent.document.getElementById('device_selection_button')).hide()
+    })
+
+  })
+</script>

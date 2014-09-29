@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mac_vendor.name %>
+</p>
+
+<p>
+  <strong>Mac:</strong>
+  <%= @mac_vendor.mac %>
+</p>
+
+<%= link_to 'Edit', edit_mac_vendor_path(@mac_vendor) %> |
+<%= link_to 'Back', mac_vendors_path %>

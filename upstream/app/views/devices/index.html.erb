@@ -1,0 +1,8 @@
+<div>
+  <%= link_to "See not approved", not_approved_devices_path, :class => "btn btn-primary" if current_user_admin? %>
+</div>
+
+<% @devices.each do |device| %>
+  <%= render :partial => 'childs', :locals => {:device => device} %>
+<% end %>
+<%= link_to 'New Device', new_device_path %>

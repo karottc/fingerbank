@@ -1,0 +1,63 @@
+<%= form_for(@discoverer) do |f| %>
+  <% if @discoverer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discoverer.errors.count, "error") %> prohibited this discoverer from being saved:</h2>
+
+      <ul>
+      <% @discoverer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :priority %>
+    <%= f.text_field :priority %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Associated device" %><br/>
+    <%= f.hidden_field :device_id %>
+    <%= render :partial => 'devices/devices_selection', :locals => {:set => '#discoverer_device_id', :selected => @discoverer.device} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :version %>
+    <%= f.text_field :version %>
+  </div>
+
+  <% if @discoverer.persisted? %>
+    <a href="<%= new_rule_path %>?version_discoverer_id=<%= @discoverer.id %>">New version rule</a>
+    <a href="<%= new_rule_path %>?device_discoverer_id=<%= @discoverer.id %>">New Device rule</a>
+  <% end %>
+
+  <input name="discoverer[device_rule_ids][]" value="" type="hidden">
+  <% @discoverer.device_rules.each do |rule| %>
+    <div>
+      <button onclick="javascript:$(this).parent().remove()">-</button>
+      <a href="<%= edit_rule_path(rule) %>">edit</a>
+      <input name="discoverer[device_rule_ids][]" value="<%=rule.id%>" type="hidden">
+      <span><%= rule.value %></span>
+    </div>
+  <% end %>
+
+  <input name="discoverer[version_rule_ids][]" value="" type="hidden">
+  <% @discoverer.version_rules.each do |rule| %>
+    <div>
+      <button onclick="javascript:$(this).parent().remove()">-</button>
+      <a href="<%= edit_rule_path(rule) %>">edit</a>
+      <input name="discoverer[version_rule_ids][]" value="<%=rule.id%>" type="hidden">
+      <span><%= rule.value %></span>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

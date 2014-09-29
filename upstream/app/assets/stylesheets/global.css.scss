@@ -1,0 +1,87 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body{
+  width:1200px;
+  margin:auto;
+}
+
+table{
+  margin:auto;
+  table-layout:fixed;
+  max-width:1200px;
+  display:block;
+  overflow-x:scroll;
+}
+
+th{
+  padding:0 1em;
+}
+
+td.options{
+  text-align:center;
+  width:100px;
+}
+
+td{
+  max-width:300px;
+  /*white-space:nowrap;*/
+  overflow:hidden;
+  text-overflow:ellipsis;
+  padding:0 1em;
+
+/*
+  a, a:visited, a:link, a:hover, a:active{
+    color:white;
+  }
+*/
+}
+
+.btn-show{
+  @extend .btn;
+  @extend .btn-info;
+  @extend .glyphicon;
+  @extend .glyphicon-eye-open;
+  margin:0.1em;
+  padding:0.1em;
+  color:white;
+}
+
+.btn-edit{
+  @extend .btn;
+  @extend .btn-warning;
+  @extend .glyphicon; 
+  @extend .glyphicon-pencil;
+  margin:0.1em;
+  padding:0.1em;
+  color:white;
+}
+
+.btn-delete{
+  @extend .btn;
+  @extend .btn-danger;
+  @extend .glyphicon;
+  @extend .glyphicon-remove;
+  margin:0.1em;
+  padding:0.1em;
+  color:white;
+}
+
+.btn-refresh{
+  @extend .btn;
+  @extend .btn-warning;
+  @extend .glyphicon;
+  @extend .glyphicon-refresh;
+  margin:0.1em;
+  padding:0.1em;
+  color:white;
+}
+
+input[type='text']{
+  width:500px;
+}
+
+textarea{
+  width:500px;
+  height:100px;
+}

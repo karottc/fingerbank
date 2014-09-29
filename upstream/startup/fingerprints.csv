@@ -1,0 +1,537 @@
+1,15,3,6,44,46,47,31,33,121,249,43,200|Microsoft Windows XP (Version 5.1, 5.2)
+1,15,3,6,44,46,47,31,33,249,43|Microsoft Windows XP (Version 5.1, 5.2)
+1,15,3,6,44,46,47,31,33,249,43,252|Microsoft Windows XP (Version 5.1, 5.2)
+1,15,3,6,44,46,47,31,33,249,43,252,12|Microsoft Windows XP (Version 5.1, 5.2)
+15,3,6,44,46,47,31,33,249,43|Microsoft Windows XP (Version 5.1, 5.2)
+15,3,6,44,46,47,31,33,249,43,252|Microsoft Windows XP (Version 5.1, 5.2)
+15,3,6,44,46,47,31,33,249,43,252,12|Microsoft Windows XP (Version 5.1, 5.2)
+28,2,3,15,6,12,44,47|Microsoft Windows XP (Version 5.1, 5.2)
+1,15,3,6,44,46,47,31,33,43|Microsoft Windows 2000 (Version 5.0)
+1,15,3,6,44,46,47,31,33,43,252|Microsoft Windows 2000 (Version 5.0)
+1,15,3,6,44,46,47,31,33,43,252,12|Microsoft Windows 2000 (Version 5.0)
+15,3,6,44,46,47,31,33,43|Microsoft Windows 2000 (Version 5.0)
+15,3,6,44,46,47,31,33,43,252|Microsoft Windows 2000 (Version 5.0)
+1,15,3,6,44,46,47,31,33,43,77|Microsoft Windows ME (Version 4.90)
+15,3,6,44,46,47,31,33,43,77|Microsoft Windows ME (Version 4.90)
+1,3,6,15,44,46,47,57|Microsoft Windows 98 (Version 4.10)
+1,3,15,6,44,46,47|Microsoft Windows 95 (Version 4.0)
+1,15,3,44,46,47,6|Microsoft Windows NT 4 (Version 4.0)
+1,2,3,6,12,15,26,28,85,86,87,88,44,45,46,47,70,69,78,79|Microsoft Windows NT 4 (Version 4.0)
+1,15,3,6,44,46,47,43,77|Microsoft Windows 98SE (Version 4.10)
+1,15,3,6,44,46,47,43,77,252|Microsoft Windows 98SE (Version 4.10)
+15,3,6,44,46,47,43,77|Microsoft Windows 98SE (Version 4.10)
+15,3,6,44,46,47,43,77,252|Microsoft Windows 98SE (Version 4.10)
+1,15,3,6,44,46,47,31,33,121,249,43|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,112,64|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,128,64|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,168,112,64|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,176,67|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,188,67|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,32,176,67|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,0,64,112|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,195|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,43,252|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,3,6,12,15,28,44,46,47,33,249|Microsoft Windows Vista/7 or Server 2008 (Version 6.0)
+1,15,3,6,44,46,47,31,33,121,249,252,43|Microsoft Windows 8 or 8.1 (Version 6.2)
+1,3,6,15,33,44,46,47,121,249,43,60,212|Microsoft Windows 8 or 8.1 (Version 6.2)
+1,15,3,6,44,46,47,31,33,121,249,43,0,112,98|Microsoft Windows 7 or Server 2008 R2 or Server SBS 2011 (Version 6.1)
+1,15,3,6,44,46,47,31,33,121,249,43,0,176,112|Microsoft Windows 7 or Server 2008 R2 or Server SBS 2011 (Version 6.1)
+1,15,3,6,44,46,47,31,33,121,249,43,0,192,176,112|Microsoft Windows 7 or Server 2008 R2 or Server SBS 2011 (Version 6.1)
+1,15,3,6,44,46,47,31,33,121,249,43,0,80|Microsoft Windows 7 or Server 2008 R2 or Server SBS 2011 (Version 6.1)
+1,15,3,6,44,46,47,31,33,249,43,171,172|Microsoft Windows XP for embedded devices
+1,3,12,6,15,112,113,78,79|Mac OS X
+1,3,6,15,112,113,78,79|Mac OS X
+1,3,6,15,112,113,78,79,95|Mac OS X
+1,3,6,15,112,113,78,79,95,252|Mac OS X
+1,3,6,15,112,113,78,79,95,252,44,47|Mac OS X
+1,3,6,15,112,113,78,79,95,44,47|Mac OS X
+1,3,6,15,119,112,113,78,79,95,252|Mac OS X
+1,3,6,15,119,95,252,44,46,101|Mac OS X
+1,3,6,15,119,95,252,44,46,47|Mac OS X
+1,3,6,15,119,95,252,44,46,47,101|Mac OS X
+1,3,6,15,67,43,60|Mac OS X
+3,6,15,112,113,78,79,95|Mac OS X
+3,6,15,112,113,78,79,95,252|Mac OS X
+3,6,15,112,113,78,79,95,252,44,47|Mac OS X
+3,6,15,112,113,78,79,95,44,47|Mac OS X
+43,60|Mac OS X
+60,43|Mac OS X
+1,3,6,15,33,42,44,45,46,47,69,70,71,74,78,79|Mac OS 9
+1,3,6,15,119,95,252,44,46|Mac OS X Lion
+1,28,66,6,15,3,35,150|Cisco IP Phone
+1,3,15,6,12,35,66,150|Cisco IP Phone
+1,3,6,12,15,28,42,66,149,150|Cisco IP Phone
+1,3,6,15,35,66,150|Cisco IP Phone
+1,3,6,15,35,66,51,150|Cisco IP Phone
+1,3,6,15,42,66,150|Cisco IP Phone
+1,3,6,15,42,66,51,150|Cisco IP Phone
+1,66,6,3,15,150,35|Cisco IP Phone
+1,66,6,3,15,150,35,151|Cisco IP Phone
+6,3,1,66,15,150|Cisco IP Phone
+1,28,3,15,6,12,7,26,42,43,242|Avaya IP Phone
+1,28,3,6,15,42,242|Avaya IP Phone
+1,28,3,6,15,42,43,176,66|Avaya IP Phone
+1,3,6,15,66,69,43,176|Avaya IP Phone
+1,3,7,6,15,66,69,43,176|Avaya IP Phone
+1,3,6,15,12|BATM VoIP Adapter
+1,3,42,6,7,15,58,59,66|Linksys PAP VoIP
+1,3,6,12,15,42,43|Mediatrix VoIP Adapter
+1,2,3,6,15,42|Uniden DTA VoIP Adapater
+54,51,58,59,1,3,6,15,28,139|UniData IP Phone
+54,51,58,59,1,3,6,15,28,139,2,42,66|UniData IP Phone
+3,1,6,12,15,67,66,43|Sunrocket VoIP Gizmo
+1,15,3,6,44,46,47,66|Sipura VoIP Adaptor
+1,3,42,6,7,15,58,59,44,66|Sipura VoIP Adaptor
+1,3,6,15,44,46,47,31,33,43|Clipcomm IP Phone
+1,28,1,3|Nortel IP Phone
+1,28,1,3,43,128,131,144,157,188,191,205,219,223,232,247,251,58,59|Nortel IP Phone
+1,28,3|Nortel IP Phone
+1,28,3,43,128,131,144,157,188,191,205,219,223,224,227,230,232,235,238,241,244,247,249,251,254,58,59,66|Nortel IP Phone
+1,28,3,43,128,131,144,157,188,191,205,219,223,224,227,230,232,235,238,241,244,247,249,251,254,58,59,66,6,15|Nortel IP Phone
+1,28,3,43,128,131,144,157,188,191,205,219,223,232,247,251,58,59|Nortel IP Phone
+1,28,3,43,128,131,144,157,188,191,205,219,223,232,247,251,58,59,66|Nortel IP Phone
+1,28,3,43,128,131,144,157,188,191,205,219,223,232,247,251,58,59,66,6,15|Nortel IP Phone
+1,28,3,99,43,128,131,144,157,188,191,205,219,223,224,227,230,232,235,238,241,244,247,249,251,254,58,59,66,6,15|Nortel IP Phone
+51,58,59,1,3,43,128,144,157,191,251|Nortel IP Phone
+1,3,6,66,15|ZyXEL WiFi Phone
+1,6,15,3,43|UTStarcom F3000
+1,28,156,4,3,66,42|ShoreTel IP Phone
+1,2,3,6,12,15,28,33,42,43,120|Siemens OpenStage IP Phones
+1,2,3,6,12,15,28,42,43,120|Siemens optiPoint WL2 Professional
+1,28,3,6,15,33,42,2,43|Siemens optiPoint 410/420
+1,28,3,6,15,33,42,2,43,120|Siemens optiPoint 410/420
+1,28,43,3|Siemens optiPoint 410/420
+1,28,54,58,59,60,43,3|Alcatel Advanced Reflex IP Phone
+1,3,28,43,58,59|Alcatel IP Touch 8 Series Phones
+1,3,42,6,7,15,58,59,44,66,150,151|Cisco/Linksys SPA series IP Phone
+1,3,42,6,7,15,58,59,44,66,150,2,151|Cisco/Linksys SPA series IP Phone
+1,3,42,6,7,15,58,59,66,2,150,151,160,159|Cisco/Linksys SPA series IP Phone
+1,3,6,12,15,66|Siemens optiPoint 150 S
+1,3,6,12,42,44,51,54,58,59,128,66,120,129,130,131,132,133,134,135,224,138,125,43|Mitel IP Phone
+1,3,6,12,42,44,51,54,58,59,128,66,120,129,130,131,132,133,134,135,224,138,125,43,225,226|Mitel IP Phone
+1,2,3,4,6,15,42,54,160,66,43|Polycom Conference IP Phone
+1,2,3,4,6,15,42,54,66,43|Polycom Conference IP Phone
+1,2,3,4,6,15,42,54,7,160,66|Polycom Conference IP Phone
+1,28,160,3,4,42,2,6,15|Polycom Conference IP Phone
+1,28,160,43,3,4,42,2,6,15|Polycom Conference IP Phone
+1,28,160,66,43,3,4,42,2,6,15|Polycom Conference IP Phone
+1,28,160,66,43,3,4,42,2,6,15,7|Polycom Conference IP Phone
+1,28,3,160,66,4,42,2,6,15|Polycom Conference IP Phone
+1,28,3,160,66,4,42,2,6,15,128,144,157,191|Polycom Conference IP Phone
+1,28,66,6,15,3,35,43,128,131,144,157,188,191,205,219,223,232,247,251|Polycom Conference IP Phone
+1,3,6,15,42,43,44,46,47,119|Polycom Conference IP Phone
+1,3,6,7,15,66,151,152|Polycom Conference IP Phone
+1,3,6,7,15,66,151,152,43,128,129,130|Polycom Conference IP Phone
+191,157,144,128,66,160,7,54,42,15,6,4,3,2,1|Polycom Conference IP Phone
+66,160,7,54,42,15,6,4,3,2,1|Polycom Conference IP Phone
+1,28,66,3,4,42,2,6,15|Polycom SoundPoint IP 430
+1,3,6,12,15,42,66,67,120|Snom VoIP solutions
+1,28,1,3,6,42,66|Aastra VoIP
+1,3,6,42,43,2,66|Aastra VoIP
+1,3,6,42,43,2,66,159,160|Aastra VoIP
+1,3,6,42,43,66,159,160|Aastra VoIP
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,66|Nortel IP Phone Model 1535
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,66,72,150|Nortel IP Phone Model 1535
+1,28,160,66,3,4,42,2,6,15|Polycom SoundPoint IP 450
+1,3,15,160,66,3,4,54,42,2,6,15|Polycom SoundStation IP 6000
+1,28,3,66,4,42,2,6,15|Polycom SoundPoint IP 301
+1,3,6,12,15,28,66|GrandStream HandyTone 503 ATA
+1,28,66,6,15,3,35,176|Unidentified Polycom
+1,3,15,242,4,54,42,2,6|Unidentified Polycom
+54,51,58,59,1,3,6,15,28|MagicJack Plus
+1,3,6,12,15,42,66,150|Cisco ATA 186
+1,3,6,15,120,114,125|Gigaset Communications GmbH
+1,2,3,4,6,7,12,15,28,42,66,67,43,120|XIAMEN YEALINK NETWORK TECHNOLOGY
+1,3,6,12,15,26,28,40,41,42,43|NetCODEC Co VoIP
+58,59,6,15,66,67,51,54,1,3|Panasonic KX-UDS124CE SIP-DECT Base Station
+1,2,3,6,12,15,28,42,43,66,120,125|Grandstream Telephone
+1,2,3,6,12,15,28,42,43,66,125|Grandstream Telephone
+1,3,28,6,66,150|2N TELEKOMUNIKACE Helios Phones
+1,28,3,43|Cisco Wireless Access Point
+1,28,3,6,15,44|Cisco Wireless Access Point
+1,28,3,6,15,67,4|Cisco Wireless Access Point
+1,28,3,6,15,67,4,7|Cisco Wireless Access Point
+1,3,4,6,12,15,28,42,43,66,67,60|Cisco Wireless Access Point
+1,6,15,44,3,33,150,43|Cisco Wireless Access Point
+1,6,15,44,3,7,33,150,43|Cisco Wireless Access Point
+1,66,6,15,44,3,67,12,33,150,43|Cisco Wireless Access Point
+1,66,6,15,44,3,67,12,33,150,43,125|Cisco Wireless Access Point
+1,66,6,15,44,3,67,33,150,43|Cisco Wireless Access Point
+1,3,15,6,43,77|Compex Wireless Access Point
+1,15,3,6,44,46,47|Cisco/Linksys Router
+1,15,3,6,44,46,47,1,3,6,15,44,46,47|Cisco/Linksys Router
+1,15,3,6,44,46,47,66,1,3,6,15,44,46,47|Cisco/Linksys Router
+1,28,2,3,15,6,12,4,7,23,26,43,50,51,54,55,60,61|Cisco/Linksys Router
+1,28,2,3,15,6,12,4,7,23,26,43,50,51,54,55,60,72|Cisco/Linksys Router
+1,3,6,12,15,28|Cisco/Linksys Router
+1,3,6,12,15,28,40,41,42,121|Cisco/Linksys Router
+1,3,6,12,15,28,44|Cisco/Linksys Router
+1,3,6,12,15,28,44,33,249|Cisco/Linksys Router
+1,3,6,12,15,44,46,47|Cisco/Linksys Router
+1,3,6,15,28,54|Cisco/Linksys Router
+15,3,6,44,46,47|Cisco/Linksys Router
+6,3,1|Cisco/Linksys Router
+1,121,3,6,12,15,28,33|Netgear Router
+1,121,3,6,12,15,28,33,43|Netgear Router
+1,3,6,12,15,28,33,121|Netgear Router
+1,3,6,12,15,28,33,121,249|Netgear Router
+1,3,6,12,15,28,33,44,121|Netgear Router
+1,3,6,12,15,28,33,44,121,249|Netgear Router
+3,1,6,15|Netgear Router
+3,1,6,15,12|Netgear Router
+3,6,15|Netgear Router
+1,2,3,15,6,12,44|Apple Airport
+1,28,3,6,15|Apple Airport
+28,3,6,15|Apple Airport
+1,3,6,12,15,43,66,67,128,129,130,131,132,133,134,135|Symbol Wireless Access Point
+1,28,2,3,15,6,12,4,7,23,26,43,50,51,54,55,60,61,72|Gemtek Wireless Router
+1,3,6,15,43,44,46,47|Gemtek Wireless Router
+1,3,6,12,15,28,33,40,41,42,44,46,47|D-Link Wireless Router
+1,3,6,12,15,28,33,40,41,42,44,46,47,121,249|D-Link Wireless Router
+1,3,6,12,15,28,40,41,42,44,46,47|D-Link Wireless Router
+1,3,6,12,15,28,44,46,47|D-Link Wireless Router
+1,3,6,12,15,66,69,70,67|D-Link Wireless Router
+1,3,6,15,33,44,46,47,121|D-Link Wireless Router
+1,3,6,15,33,44,46,47,121,249,43|D-Link Wireless Router
+1,3,6,44,15,46,47|D-Link Wireless Router
+1,3,6,44,46,47,12,15,17,23,28,29,31,33|D-Link Wireless Router
+1,2,3,6,15,88,42,44,46,47|2Wire Residential Gateway
+1,28,1,3,6,4|Motorola Router
+1,3,6,12,15,23,28,29,31,33,40,41,42,44|Buffalo Wireless AP
+1,28,3,15,6,12,44|Bluesocket BSC
+1,28,6,5,3,44,15|Trendnet Access Point
+6,5,3,44,15|Trendnet Access Point
+1,28,3,43,44,46,47,6|TP-Link Wireless LAN Router
+1,3,43,44,46,47,6|TP-Link Wireless LAN Router
+1,3,43,44,46,47,6,33,121|TP-Link Wireless LAN Router
+1,3,43,44,46,47,6,33,121,249|TP-Link Wireless LAN Router
+1,3,6,12,15,17,28,42|TP-Link Wireless LAN Router
+1,3,6,12,15,28,42,44|TP-Link Wireless LAN Router
+1,3,6,15,33,43,44,46,47,121|TP-Link Wireless LAN Router
+1,3,6,15,33,43,44,46,47,121,249|TP-Link Wireless LAN Router
+1,2,3,6,12,15,28,42,43,44|Ruckus Wireless
+1,15,3,6,43|Enterasys or Trapeze Wireless Access Point
+1,28,3,6,15,12|Enterasys HiPath Wireless Access Point
+1,3,6,12,15,28,44,212|Quanta Microsystems Router
+3,22,23,1,24,33,35,6,15|Quanta Microsystems Router
+1,28,2,3,15,6,12,43|HP ProCurve Access Point
+# 1,28,2,3,15,6,12,44 conflict with Kyocera m@c vendor|HP ProCurve Controller
+1,28,2,3,15,6,43|Aruba Access Point
+1,3,4,6,12,15,28,42,43,60|Aruba Access Point
+1,3,6,12,15,17,43,60|Aruba Access Point
+1,3,6,12,15,4,43,44,60,42,28|Aruba Access Point
+1,3,6,15,43,60|Aruba Access Point
+1,249,3,6,12,15,28,33,40,41,42,44|Trendnet Wireless Router
+1,3,12,23,44,47|Belkin Wireless Router
+1,3,121,6,12,15,28,50,33|Belkin Wireless Router
+1,3,6,12,15,28,33,44|Belkin Wireless Router
+1,3,6,12,15,28,50,33|Belkin Wireless Router
+3,1,6,15,121|Belkin Wireless Router
+1,121,3,33,6,42|MikroTik (RouterOS)
+1,3,6,15,51,58,59,255|Freebox Wireless Router
+1,3,6,7,12,15,28,40,41,42,225,226,227,228|AeroHive Hive Access Points
+1,3,6,7,12,15,28,40,41,42,225,226,227,228,229,230,231|AeroHive Hive Access Points
+1,3,6,15,31,33,43,44,46,47,249|Tenda Wireless Router
+1,3,6,10,12,14,15,28,40,41,42,87|Zioncom Wireless Router
+1,3,6,12,15,26,28,40,41,42|AP Meraki
+1,28,2,3,15,6,4,7,23,26,43,50,51,54,55,60,61,72|Actiontec Wireless Router
+1,121,249,3,6,12,15,28,33,43|N300 Wireless Router
+1,28,2,3,15,6,12,43,191,186,187,188,189|Motorola AP 6511
+1,3,6,12,15,28,42,43,186,187,188,189,191,192|Motorola AP 6511
+1,3,6,12,15,17,28,42,234|Sophos/Astaro Wireless Access Point AP 10 Access Point
+1,28,2,121,15,6,12,40,41,42,26,119,3,121,249,33,42|Debian-based Linux
+1,28,2,3,15,6,119,12|Debian-based Linux
+1,28,2,3,15,6,119,12,44,47,26|Debian-based Linux
+1,28,2,3,15,6,119,12,44,47,26,121,42,121,249,33,252,42|Debian-based Linux
+1,28,2,3,15,6,12|Debian-based Linux
+1,28,2,3,15,6,12,121,249,33,252,42|Debian-based Linux
+1,28,2,3,15,6,12,42|Debian-based Linux
+1,28,2,3,15,6,12,44,47|Debian-based Linux
+1,28,2,3,15,6,12,44,47,26|Debian-based Linux
+1,28,3,121,26,12,15,119,6,40,41,87,85,86,44,45,46,47,42,121,249,33,252,42|Debian-based Linux
+3,6,15,28,12,7,9,42,48,49|Debian-based Linux
+1,121,33,3,6,12,15,28,42,51,54,58,59,119|Generic Linux
+1,15,3,6,44,46,47,31,33,249,43,0,128,112|Generic Linux
+1,28,2,121,15,6,12,40,41,42,26,119,3,121,249,33,252,42|Generic Linux
+1,28,2,3,15,6,12,121,249,252,42|Generic Linux
+1,3,6,12,15,23,28,29,31,33,40,41,42|Generic Linux
+1,3,6,12,15,23,28,29,31,33,40,41,42,9,7,200,44|Generic Linux
+1,3,6,12,15,28,40,41,42,119|Generic Linux
+3,6,12,15,17,23,28,29,31,33,40,41,42,119|Generic Linux
+3,6,12,15,17,23,28,29,31,33,40,41,42,9,7,200,44|Generic Linux
+1,28,2,3,15,6,12,40,41|SUSE Linux/Novell Desktop
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,9,7,200,44|SUSE Linux/Novell Desktop
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,9,7,44,45,46,47|SUSE Linux/Novell Desktop
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,9,7,44,45,46,47,119|SUSE Linux/Novell Desktop
+1,28,2,3,15,6,12,40,41,42|RedHat/Fedora-based Linux
+1,28,2,3,15,6,12,40,41,42,26|RedHat/Fedora-based Linux
+1,28,2,3,15,6,12,40,41,42,26,119|RedHat/Fedora-based Linux
+28,2,3,15,6,12,40,41,42|RedHat/Fedora-based Linux
+1,121,33,3,6,12,15,26,28,42,51,54,58,59,119|Gentoo Linux
+1,121,33,3,6,12,15,28,40,41,42,51,58,59,119|Gentoo Linux
+1,3,6,12,15,17,23,28,29,31,33,40,41,42|Gentoo Linux
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,119|Gentoo Linux
+58,59,1,28,121,33,3,12,119,15,6,40,41,42,26|Gentoo Linux
+1,28,2,3,15,6,119,12,44,47,26,121|Ubuntu/Debian 5/Knoppix 6
+1,28,2,3,15,6,119,12,44,47,26,121,42|Ubuntu/Debian 5/Knoppix 6
+1,2,3,6,12,15,28,40,42|FortiOS
+58,59,1,28,121,33,3,12,119,15,6,40,41,42,26,17,120|Puppy Linux 4.x
+252,3,42,15,6,1,12|Meego Netbook
+58,59,1,28,121,33,3,12,119,15,6,26,17,120|Ubuntu Server 10.04 LTS
+1,28,3,26,12,15,6,40,41,87,85,86,44,45,46,47,42|Suse Linux Enterprise Desktop 11
+1,28,2,3,15,6,119,12,44,47,26,121,42,121,249,252,42|Ubuntu 11.04
+1,28,2,121,15,6,12,40,41,42,26,119,3|Fedora 14 based distro
+1,121,33,3,6,12,15,26,28,51,54,58,59,119|Chrome OS
+1,121,33,3,6,12,15,26,28,51,54,58,59,119,252|Chrome OS
+1,33,3,6,28,51,54,58,59|Chrome OS
+1,28,2,121,15,6,12,40,41,42,26,119,3,121,249,252,42|Fedora 15 or 16 based distro
+1,28,2,121,15,6,12,40,41,42,26,119,3,121,249,42|RHEL 6.4 or Centos6.4
+1,3,6,15|Xbox
+3,6|Xbox
+1,3,6|Xbox 360
+1,3,15,6|Playstation 2
+3,15,6|Playstation 2
+3,6,26,28,58,59|Gamecube
+1,3,6,12,15,28,33,58,59|Wii
+1,3,28,6,15|Playstation 3 or Playstation Portable (PSP)
+28,2,3,15,6,12|TiVo
+1,2,3,4,7,6,15|Replay TV
+1,28|Replay TV
+1,2,3,6,12,15,17,23,28,29,31,33,40,41,42,43|Amino Aminet Set Top Box
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,43|Amino Aminet Set Top Box
+1,3,6,15,44,46,47|Slingbox
+1,3,6,15,23,51,54|Motorola NIM100
+1,3,6,15,51|Sony player
+58,59,6,15,51,54,1,3|Panasonic G20 Television
+1,28,3,6,15,2,42,4,66|ClearOne Gentner Communications CONVERGE1212 CONVERGE880
+1,3,6,12,15,28,42,125|Samsung SMART-TV
+1,3,4,6,12,42|VBrick Multimedia System
+1,3,58,59|Extron Electronics
+1,3,58,59,6|Extron Electronics
+1,3,58,59,6,15|Extron Electronics
+1,3,42|Arecont Vision
+1,3,4,6,12,15,17,23,28,29,31,33,40,41,42|ACTi Corporation
+1,3,6,15,42,44,46,47,69|Axis communications ab
+1,28,15,6,3,1|Matsushita electric / Panasonic
+1,2,3,6,12,15,17,23,28,29,31,33,40,41,42,43,72|Amino’s IPTV
+1,3,6,12,15,28,60|TV-IP512P PoE Network Camera
+1,3,44,6,7,12,15,22,54,58,59,18,144|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,144|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,144,119|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,43|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,43,119|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,43,119,154|HP Printer
+1,3,44,6,7,12,15,22,54,58,59,69,18,43,119,81,153,154|HP Printer
+1,3,44,6,7,12,252,15,22,54,58,59,69,18,43,119,81,153,154|HP Printer
+1,3,44,6,81,7,12,15,22,54,58,59,69,18,144|HP Printer
+1,3,6,7,12,26,44,51,54,58,59,190|HP Printer
+1,3,7,44,51,54,58,59,12,144,18|HP Printer
+1,3,7,44,51,54,58,59,12,15,144,18|HP Printer
+3,1,15,44,12|HP Printer
+3,44,6,7,12,15,22,54,58,59,69,18,144|HP Printer
+3,44,6,81,7,12,15,22,54,58,59,69,18,144|HP Printer
+3,7,44,51,54,58,59,12,15,144,18|HP Printer
+6,3,1,15,12,66,67,13,44|HP Printer
+6,3,1,15,44,12|HP Printer
+6,3,1,15,66,67,13|HP Printer
+6,3,1,15,66,67,13,12|HP Printer
+6,3,1,15,66,67,13,44,12|HP Printer
+6,3,1,15,66,67,13,44,12,81|HP Printer
+6,3,1,15,66,67,13,44,12,81,252|HP Printer
+1,3,12,23,6,15|Canon Printer
+1,3,6,15,44,47|Canon Printer
+3,6,15,44,47|Canon Printer
+1,2,3,6,12,15,26,28,85,86,87,88,44,45,46,47,70,69,78,79,120|Xerox Printer
+1,2,3,6,15,26,28,85,86,87,88,44,45,46,47,70,69,78,79,120|Xerox Printer
+1,28,3,15,6,12,44,78,79|Xerox Printer
+1,28,3,15,6,12,44,78,79,2,42|Xerox Printer
+1,28,3,15,6,12,44,78,79,66,67|Xerox Printer
+1,28,3,15,6,12,44,81,78,79,116,2,42,58,59,69,119|Xerox Printer
+1,28,3,15,6,12,81,44,46,78,79,116,66,67,2,69,42,58,59,119,252|Xerox Printer
+1,28,3,58,59,6,15,78,79,12,42,44,46,69,116,66,67|Xerox Printer
+1,28,3,58,59,6,15,78,79,12,44,46,69,116,66,67|Xerox Printer
+1,28,3,58,59,6,15,78,79,42,44,46,69,116,66,67,12|Xerox Printer
+1,28,3,58,59,6,15,78,79,44,46,69,116,66,67,12|Xerox Printer
+1,3,28,58,59,6,15,78,79,44,46,69,12,81|Xerox Printer
+1,3,28,58,59,6,15,78,79,44,46,69,66,67,12|Xerox Printer
+1,3,28,58,59,6,15,78,79,44,46,69,66,67,12,81|Xerox Printer
+1,3,28,6,15,44,46,69,12,81|Xerox Printer
+1,3,6,7,12,15,18,23,26,44,46,51,54,58,59,78,79|Xerox Printer
+116,252,67,28,59,58,15,6,119,81,44,46,47,42,70,3,78,79,69,1,66,2|Xerox Printer
+51,1,3,58,59,12,44,54,6,15,144|Xerox Printer
+1,2,3,6,12,15,26,28,88,44,45,46,47,70,69,78,79|Dell Printer
+1,2,3,6,12,15,26,28,85,86,87,88,44,45,46,47|Brother Printer
+1,3,6,12,15,28,42,40,44,46|Brother Printer
+6,3,1,15,66,67,13,12,44|Brother Printer
+6,3,1,15,66,67,13,12,44,2,42|Brother Printer
+1,3,6,58,59,44,46,47|Tally Printer
+1,121,33,3,6,15,28,40,41,42,51,58,59,119|Kyocera Printer
+1,28,2,3,15,6,12,44|Kyocera Printer
+1,3,12,23,6,15,44,47|Kyocera Printer
+1,3,12,6,15,23,44,47|Kyocera Printer
+1,3,15,6,44|Kyocera Printer
+1,3,6,15,28,33,40,41,42,51,58,59,119,121|Kyocera Printer
+1,3,6,12,15,28,42,40|Epson Printer
+1,3,6,12,15,28,51,54,58,59|Epson Printer
+1,3,4,42,6,7,12,15,26,44,51,54,58,59,190|Lexmark Printer
+1,3,42,4,6,7,12,15,26,44,51,54,58,59,190|Lexmark Printer
+1,3,42,4,6,7,12,15,26,51,54,58,59|Lexmark Printer
+1,3,42,4,6,7,12,26,44,51,54,58,59,190|Lexmark Printer
+1,3,6,12,15,28,42,40,38,23,37,44,39,19,26|Lexmark Printer
+1,3,7,12,26,44,51,54,58,59|Lexmark Printer
+1,3,7,12,26,44,51,54,58,59,190|Lexmark Printer
+54,59,83,101,114,61,57,52,50,49,80,89,51,59,255|Lexmark Printer
+1,3|Trendnet Printserver
+1,3,6,7,12,15,18,23,26,44,46,51,54,58,59,78,79,81|Generic Printer
+1,3,28,15,6,44,69,70,42,12,4|Toshiba Multifunction Printer
+1,3,6,44,12,15,4,69,70,42|Toshiba Multifunction Printer
+1,3,6,12,15,28,44,47|Ricoh Multifunction Printer
+1,3,6,12,15,28,44,47,204|Ricoh Multifunction Printer
+1,3,6,15,28,44,47|Ricoh Multifunction Printer
+1,3,23,6,15|Konica Minolta Multifunction Printer
+1,3,6,15,44|Konica Minolta Multifunction Printer
+1,3,6,15,44,46|Konica Minolta Multifunction Printer
+1,3,6,44,46|Konica Minolta Multifunction Printer
+3,22,23,1,24,33,35,6,15,44,11|Zebra Printer
+1,3,6,15,7,44,51,54,58,59,12|SEH COMPUTERTECHNIK GMBH
+1,3,6,15,7,44,51,54,58,59,12,69|SEH COMPUTERTECHNIK GMBH
+1,3,6,15,7,44,51,54,58,59,12,69,42|SEH COMPUTERTECHNIK GMBH
+1,3,12,23,6,15,42,44,47|Oki Xante llumina
+58,59,1,28,121,33,3,12,119,15,6,40,41,42|Shandong New Beiyang Information Technology
+58,59,6,15,44,51,54,1,3|Panasonic MB2030CX
+1,66,6,3,67|Cisco Catalyst 29xx
+1,66,6,3,67,12,150|Cisco Catalyst 29xx
+1,66,6,3,67,150,43|Cisco Catalyst 29xx
+1,6,15,44,3,33|Cisco Catalyst 35xx
+1,6,15,44,52|Cisco Catalyst 35xx
+1,3,4,23|HP ProCurve
+1,3,4,23,67|HP ProCurve
+1,3,4,23,67,66|HP ProCurve
+1,3,4,23,67,66,43,6,15|HP ProCurve
+1,3,4,43|HP ProCurve
+3,1|Enterasys SecureStacks
+1,3,66,67,54,129,150,131,132,6,15,100|Cisco Small Business
+1,3,6,15,27|3Com Switches
+1,3,12|HP ProCurve 1800-8G
+1,3,4,23,67,66,43|HP ProCurve 3500yl
+1,6,54,69,42,50,4,3,51,12,116|3Com 4400 SE Switch
+1,3,6,15,28|Hotway LanDrive
+1,3,6,12,15,28,42|LaCie NAS
+1,6,3|Xyratex NAS
+1,3,6,12,15,17,23,28,29,31,33,40,41,42,44|Synology NAS
+1,28,2,121,3,15,6,12,119|NAS4FREE
+1,28,2,3,15,6,119,12,44,47,121|Iomega Backup Center
+1,28,2,121,3,15,6,12|Nokia
+1,3,6,12,15,17,28,40,41,42|Nokia
+1,3,6,28|Nokia
+56,6,1,3,15|RIM BlackBerry
+1,3,6,15,119,252|Apple iPod, iPhone or iPad
+1,3,6,15,119,252,46,208,92|Apple iPod, iPhone or iPad
+1,3,6,15,119,252,67,52,13|Apple iPod, iPhone or iPad
+1,3,6,15,119,78,79,95,252|Apple iPod, iPhone or iPad
+1,121,33,3,28,51,58,59|HTC Android
+12,6,15,1,3,28,120|Symbian OS
+12,6,15,1,3,28,120,119|Symbian OS
+1,3,6,12,15,28,33,51,58,59,119,121|Sony Ericsson Android
+1,15,3,6|Apple iPod
+1,2,3,4,5,6,7,8,9,12,13,15,16,17,23,26,28,42,44,50,51,53,54,56,66,67|Samsung S8000
+1,3,5,6,32,13,15,17,23,28,42,50,51,53,54,56,66,67|Samsung S8500
+1,3,5,6,49,13,15,17,23,28,42,50,51,53,54,56,66,67|Samsung S8500
+1,3,5,6,56,13,15,17,23,28,42,50,51,53,54,56,66,67|Samsung S8500
+1,3,6,120|Sony Ericsson W800i
+54,51,6,1,3,26,15,120|LG BL40
+1,121,33,3,6,12,15,28,51,58,59,119|Generic Android
+1,121,33,3,6,15,28,51,58,59,119|Generic Android
+1,121,33,3,6,28,51,58,59|Generic Android
+1,150,3,6,15,35,66|Generic Android
+1,3,6,12,15,28,43,66,125|Generic Android
+1,3,6,28,33,51,58,59,121|Generic Android
+1,33,3,6,12,15,28,51,58,59,119|Generic Android
+1,33,3,6,15,28,51,58,59|Generic Android
+1,121,33,3,6,15,28,51,58,59|Samsung Android
+1,3,6,15,28,33,51,58,59,121|Samsung Android
+6,3,1,15,12,42|Samsung Android
+1,3,6,15,44,46,47,66,67|Palm OS
+54,51,6,1,3,15,120|Sharp Phone
+1,33,3,6,28,51,58,59|Android Tablet
+1,121,33,3,6,28,42,51,58,59|Unknown Android
+1,121,33,3,6,15,28,44,51,58,59,119|Motorola Android
+1,33,3,6,15,28,44,51,58,59|Motorola Android
+1,33,3,6,15,28,44,51,58,59,119|Motorola Android
+1,3,6,12,51,58,59|Sony Ericsson CK15A
+1,33,3,6,15,28,51,58,59,119|ZTE N9120 Android
+1,121,33,3,6,12,15,28,42,51,58,59,119|Samsung GT-S5690M (Galaxy Ruby)
+# 1,33,3,6,15,28,51,58,59 too generic for be specific to kindle HD|Kindle HD
+1,3,5,6,12,13,15,17,23,28,42,50,51,53,54,56,66,67|Samsung S5260 Star II
+1,33,3,6,12,15,28,42,51,58,59,119|Samsung Galaxy Tab 3 7.0 SM-T210R
+1,33,3,6,15,26,28,51,58,59|Android LG Nexus 5 & 7
+1,28,2,3,15,6|Barnes and Noble Nook (eReader)
+163,1,28,2,3,15,6,12|Barnes and Noble Nook (eReader)
+1,3,6,12,15,28,4,72|LG G2 F320
+1,3,6,15,43,44,46,47,33,121,249|Windows Phone 8.0
+1,3,6,15,12,69,70,88,42|NetBotz WallBotz 400C
+1,2,3,4,6,15,28,33,42,43,44,58,59,100,101|HP iLO Agent
+1,3,6,15,28,33,43,44,58,59|HP iLO Agent
+202|HP iLO Agent
+203|HP iLO Agent
+6,3,1,15,66,67,13,43,58,59,42,2,12|APC UPS
+6,3,1,15,66,67,13,44,43,58,59,42,2,12|APC UPS
+1,3,6,12,15,28,42,40,38,23,37,39,19,26|Tripplite UPS
+1,3,6,12,15,120,242|Tandberg 1000
+6,1,3,12,44|Polycom ViewStation
+6,1,3,12,44,15|Polycom ViewStation
+1,28,3,15,6,12,42,242,120,66,43|Tandberg
+1,3,28,6,12,15,26,42,242,120|Tandberg
+1,3,7|Tandberg
+1,3,6,15,12,44|Polycom VSX 3000
+1,28,2,3,15,6,12,42,157|LifeSize Video Conferencing
+1,28,3,15,6,12|OpenBSD
+1,3,28,6|Eye-Fi Wireless Memory Card
+6,3,1,15,66,67,13,44,12,43,58,59,42,2|APC Uninterruptible Power Supply
+1,28,15,6,3|PHAST Electronics
+1,28,3,6|ROBE
+1,28,3,6,12,15,53,54,51,58,59,69,44,60|Intermec corporation
+1,3,5,6,12,15,44,46,47,155,156,157,158,159,160,161,162,163,164,165,166,167,168,186,187|Tattile Camera
+1,3,4,6,15|Alps Electric
+1,3,6,15,28,33|OS/2 Warp
+1,3,6,15,12,19|BeOS
+1,3,12,43|Etherboot/Sun Blade 100
+1,2,3,4,5,6,11,12,13,15,16,17,18,22,23,28,40,41,42,43,50,51,54,58,59,60,66,67,128,129,130,131,132,133,134,135|PXE
+1,2,3,4,5,6,12,13,15,17,18,22,23,28,40,41,42,43,50,51,54,58,59,60,66,67,97,128,129,130,131,132,133,134,135|PXE
+1,2,3,5,6,11,12,13,15,16,17,18,43,54,60,67,128,129,130,131,132,133,134,135|PXE
+1,3,3,5,6,11,12,13,15,16,17,18,43,54,60,67,128,129,130,131,132,133,134,135|PXE
+1,3,43,54,60,67,128,129,130,131,132,133,134,135|PXE
+100|Novell Netware Client
+78,79|Novell Netware Client
+78,79,85|Novell Netware Client
+79,78|Novell Netware Client
+85|Novell Netware Client
+85,86|Novell Netware Client
+85,86,87|Novell Netware Client
+1,3,6,15,28,12,7,9,42,48,49,26|Anaconda (RedHat) Installer
+1,3,43,60|Apple Netboot
+1,3,67,43,60|Apple Netboot
+1,3,12,43,17,128,129,130,150|Etherboot/gPXE
+1,3,6,43|Etherboot/gPXE
+1,3,12,44|Generic Intel PXE
+1,28,2,3,15,6,12,46,44|Linspire
+1,3,6,15,28,12,7,9,42,48,49|PHLAK
+1,3,6,15,51,44|Knoppix
+1,3,6,12,15,28,43|OpenSolaris
+1,2,3,5,6,12,15,19,28,33,40,41,64,65|Solaris 8 (SunOS 5.8)
+6,3,1,15,66,67,13,44|Epson Projectors
+50,1,3,12,15,51,58,59,6,42,69,70|NEC Projectors
+1,3,6,15,28,12,7,9,42,48,49,137,211,212,213,214,219|Neoware e100 NeoLinux
+1,3,6,15,44,46,47,137,215|Neoware Capio Windows CE
+1,3,6,15,44,46,47,137,215,224,226|Neoware Capio Windows CE
+1,3,6,12,15,17,26,28,40|Generic Thin Client
+1,3,6,12,15,17,28|Generic Thin Client
+1,3,6,7,12,15,17,43,60,66,67,175,203|Generic Thin Client
+1,2,4,3,12,6,15,44,43,161,162,184,185,186,192,187,181,182,188,190|Wyse Technology thin client
+1,28,3,15,6,12,2,42,48,161,162,184,185,163,164,188,189,181,182,190,186,187|Wyse Technology thin client
+1,3,6,51,58,59|Paradox Card Access module
+58,59,1,28,121,33,3,12,119,15,6,40,41,42,26,17,120,9,7,44,45,46,47|VMware vCenter Server Appliance
+58,59,1,28,121,33,3,12,119,15,6,40,41,42,26,17,120,9,7,44,45,47|VMware vCenter Server Appliance
+1,42,4,6,11,3|Precision time and frequency reference system
+1,3,6,15,70,69|Moneris HiSpeed 3100IP
+1,3,6,42,12,15,31,33,43|PCS Revenue Control Systems

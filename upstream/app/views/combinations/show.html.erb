@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @combination.device ? @combination.device.name : "Unknown" %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @combination.version %>
+</p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @combination.score %>
+</p>
+
+<p>
+  <strong>User agent:</strong>
+  <%= @combination.user_agent.value %>
+</p>
+
+<p>
+  <strong>DhcpFingerprint:</strong>
+  <%= @combination.dhcp_fingerprint.value %>
+</p>
+
+<p>
+  <strong>DHCP Vendor:</strong>
+  <%= @combination.dhcp_vendor.value %>
+</p>
+
+<p>
+  <strong>MAC Vendor:</strong>
+  <% if @combination.mac_vendor %>
+    <%= @combination.mac_vendor.name %> (<%= @combination.mac_vendor.mac %>)
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_combination_path(@combination) if current_user_admin? %> 
+<%= link_to 'Delete', @combination, method: :delete, data: { confirm: 'Are you sure?' } if current_user_admin? %>
+<%= link_to 'Index', combinations_path %>

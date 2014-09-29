@@ -1,0 +1,9 @@
+<% if @rule.device_discoverer %>
+  <%= link_to 'Back to Devices discoverer', discoverer_path(@rule.device_discoverer) %>
+<% end %>
+<% if @rule.version_discoverer %>
+  <%= link_to 'Back to version discoverer', discoverer_path(@rule.version_discoverer) %>
+<% end %>
+<% unless @rule.device_discoverer || @rule.version_discoverer %>
+  <%= link_to 'Back to rules index', rules_path %>
+<% end %>

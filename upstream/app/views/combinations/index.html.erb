@@ -1,0 +1,49 @@
+<div>
+  <%= link_to 'Submit a combination', new_combination_path, :class => 'btn btn-primary' %>
+  <%= link_to 'See unknown', unknown_combinations_path, :class => 'btn btn-primary' %>
+  <%= link_to 'See unrated', unrated_combinations_path, :class => 'btn btn-primary' %>
+
+</div>
+
+<%= render :partial => 'search' %>
+
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Device</th>
+      <th>Score</th>
+      <th>Version</th>
+      <th>Submitted by</th>
+      <th>MAC vendor</th>
+      <th>User agent</th>
+      <th>DhcpFingerprint</th>
+      <th>DHCP vendor</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @combinations.each do |combination| %>
+      <tr>
+        <td class="options">
+          <%= link_to '', combination, :class => "btn-show" %>
+          <%= link_to '', edit_combination_path(combination), :class => "btn-edit" if current_user_admin? %>
+          <%= link_to '', combination, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn-delete' if current_user_admin? %>
+          <%= link_to '', calculate_combination_path(combination), :class => "btn-refresh" if current_user_admin? %>
+        </td>
+        <td><%= combination.device ? combination.device.full_path : "Unknown" %></td>
+        <td><%= combination.score %>
+        <td><%= combination.version %></td>
+        <td><%= combination.submitter ? combination.submitter.name : '' %></td>
+        <td><%= combination.mac_vendor ? combination.mac_vendor.name : "Unknown" %></td>
+        <td><%= combination.user_agent ? combination.user_agent.value : "Unknown" %></td>
+        <td><%= combination.dhcp_fingerprint ? combination.dhcp_fingerprint.value : "Unknown" %></td>
+        <td><%= combination.dhcp_vendor ? combination.dhcp_vendor.value : "Unknown" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
+<br>
+

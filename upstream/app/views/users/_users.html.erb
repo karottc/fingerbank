@@ -1,0 +1,23 @@
+<table>
+<tr>
+  <th></th>
+  <th>Github user ID</th>
+  <th>Username</th>
+  <th>Display name</th>
+  <th></th>
+</tr>
+<% users.each do |user| %>
+  <tr>
+    <td><%= link_to '', user_path(user), :class => 'btn-show' %></td>
+    <td><%= user.github_uid %></td>
+    <td><%= user.name %></td>
+    <td><%= user.display_name %></td>
+    <% unless user.admin? %>
+      <td><%= link_to 'Promote admin', promote_admin_user_path(user), method: :post, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" if current_user_admin? %></td>
+    <% else%>
+      <td><%= link_to 'Demote admin', demote_admin_user_path(user), method: :post, data: { confirm: 'Are you sure?' }, :class => "btn btn-warning" if current_user_admin? %></td>
+    <% end %>
+  </tr>
+<% end %>
+
+</table>

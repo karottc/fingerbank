@@ -1,0 +1,6 @@
+<ul>
+<%= render :partial => 'devices/device_selection', :locals => { :device => device } %>
+<% device.device.order(:name).each do |child| %>
+  <%= render :partial => 'devices/childs_selection', :locals => {:device => child} %>
+<% end %>
+</ul>
