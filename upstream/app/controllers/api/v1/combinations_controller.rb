@@ -52,10 +52,16 @@ class Api::V1::CombinationsController < Api::ApiController
           Combination.create(:user_agent => user_agent, :dhcp_fingerprint => dhcp_fingerprint, :dhcp_vendor => dhcp_vendor, :mac_vendor => mac_vendor, :device => @combination.device)  
         end
       else
-        format.json { render json: {:message => 'Not found. Will process. Try again in a few moments'}, :status => :not_found }
-        Thread.new do
-          combination = Combination.create(:user_agent => user_agent, :dhcp_fingerprint => dhcp_fingerprint, :dhcp_vendor => dhcp_vendor, :mac_vendor => mac_vendor)
-          combination.calculate
+        if params[:wait]
+          @combination = Combination.create(:user_agent => user_agent, :dhcp_fingerprint => dhcp_fingerprint, :dhcp_vendor => dhcp_vendor, :mac_vendor => mac_vendor)
+          @combination.process
+          format.json { render 'combinations/show', status: :found, location: @combination }
+        else
+          format.json { render json: {:message => 'Not found. Will process. Try again in a few moments'}, :status => :not_found }
+          Thread.new do
+            combination = Combination.create(:user_agent => user_agent, :dhcp_fingerprint => dhcp_fingerprint, :dhcp_vendor => dhcp_vendor, :mac_vendor => mac_vendor)
+            combination.process
+          end
         end
       end
     end
