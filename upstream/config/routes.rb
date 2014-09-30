@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get '/download', :to => 'pages#download'  
+  get '/api_doc', :to => 'pages#api_doc'  
 
   resources :combinations do
     collection do
