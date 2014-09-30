@@ -1,0 +1,152 @@
+<h2>API quick guide</h2>
+
+<h4>All requests to the fingerbank API need to contain your API key in the URL parameters. You can find your key and regenerate it by accessing your account.</h4>
+
+<div class="api_method panel panel-primary">
+    <div class="panel-heading">/api/v1/download</div>
+    <div class="panel-body">
+        <p>This method allows you to download the latest version of the Fingerbank database to use with the local instance of Fingerbank or another application.</p>
+        <p>Method : GET</p>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Parameters</div>
+            <div class="panel-body">
+                <table style="overflow:auto">
+                    <th>name</th>
+                    <th>description</th>
+                    <th>type</th>
+
+                    <tr>
+                        <td>key</td>
+                        <td>Your API key</td>
+                        <td>URL</td>
+                    </tr>
+                </table>
+            </div>
+        </div>        
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Request body</div>
+            <div class="panel-body">
+                <p>None</p>
+            </div>
+        </div>
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">Response body</div>
+            <div class="panel-body">
+                <p>Type : application/sqlite3</p>
+                <p>This will contain the sqlite3 file that contains the Fingerbank database</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="api_method panel panel-primary">
+    <div class="panel-heading">/api/v1/combinations/interogate</div>
+    <div class="panel-body">
+        <p>This method allows you to interogate the Fingerbank database with a device information and get the details about it.</p>
+        <p>Method : GET</p>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Parameters</div>
+            <div class="panel-body">
+                <table style="overflow:auto">
+                    <th>name</th>
+                    <th>description</th>
+                    <th>type</th>
+
+                    <tr>
+                        <td>key</td>
+                        <td>Your API key</td>
+                        <td>URL</td>
+                    </tr>
+                    <tr>
+                        <td>wait</td>
+                        <td>Whether to wait for the combination to be parsed if no quick match is found. To activate use wait=wait</td>
+                        <td>URL</td>
+                    </tr>
+                    <tr>
+                        <td>user_agent</td>
+                        <td>The User Agent of the device</td>
+                        <td>payload</td>
+                    </tr>
+                    <tr>
+                        <td>dhcp_fingerprint</td>
+                        <td>The DHCP fingerprint of the device</td>
+                        <td>payload</td>
+                    </tr>
+                    <tr>
+                        <td>dhcp_vendor</td>
+                        <td>The DHCP vendor of the device</td>
+                        <td>payload</td>
+                    </tr>
+                    <tr>
+                        <td>mac</td>
+                        <td>The MAC address of the device</td>
+                        <td>payload</td>
+                    </tr>
+                </table>
+            </div>
+        </div>        
+
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">Request body</div>
+            <div class="panel-body">
+                <p>The request body need to contain a JSON payload</p>
+                <pre>Example body :
+{"dhcp_fingerprint":"1,15,3,6,44,46,47,31,33,121,249,43"}</pre>
+            </div>
+        </div>
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">Response body</div>
+            <div class="panel-body">
+                <p>Type : application/json</p>
+                <p>This will contain the information that was found about the specified device data.</p>
+                <pre>Example response:
+{
+    "created_at": "2014-09-10T12:11:48.000Z", 
+    "device": {
+        "created_at": "2014-09-09T15:09:51.000Z", 
+        "id": 33, 
+        "inherit": null, 
+        "mobile?": false, 
+        "name": "Microsoft Windows Vista/7 or Server 2008 (Version 6.0)", 
+        "parent_id": 1, 
+        "parents": [
+            {
+                "approved": true, 
+                "created_at": "2014-09-09T15:09:50.000Z", 
+                "id": 1, 
+                "inherit": null, 
+                "mobile": null, 
+                "name": "Windows", 
+                "parent_id": null, 
+                "submitter_id": null, 
+                "tablet": null, 
+                "updated_at": "2014-09-09T15:09:50.000Z"
+            }
+        ], 
+        "updated_at": "2014-09-09T15:09:52.000Z"
+    }, 
+    "id": 1456, 
+    "updated_at": "2014-09-26T12:57:58.000Z", 
+    "version": null
+}</pre>
+
+                <p>In some cases, when absolutely no information can be found, the application will return a 404 not found with a message asking to retry in a few moments. This is because no quick match was found for the combination. It will be passed through the Fingerbank discoverers which can take up to 3 seconds. In order to wait for the combination to be parsed, supply the 'long' parameter. Retrying the same request a few seconds after will provide the information about the combination.</p> 
+            </div>
+        </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Example using cURL :</div>
+        <div class="panel-body"><pre>curl -X GET -d "{\"dhcp_fingerprint\":\"1,15,3,6,44,46,47,31,33,121,249,43\"}" --header "Content-type: application/json" https://fingerbank.inverse.ca/api/v1/combinations/interogate?key=</pre></div>
+    </div>
+
+    </div>
+</div>
+
+
