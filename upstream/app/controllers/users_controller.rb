@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   skip_before_filter :admin_or_current_user, :only => [:login]
 
   def admin_or_current_user
-    unless @current_user == @user || ensure_admin
+    unless @current_user == @user || @current_user.admin? 
       flash[:error] = "You need to login to access this user"
       redirect_to root_path
     end
