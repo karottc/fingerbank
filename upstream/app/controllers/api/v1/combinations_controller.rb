@@ -3,6 +3,13 @@ class Api::V1::CombinationsController < Api::ApiController
   def interogate 
     require 'json'
 
+    interogate_params = get_interogate_params
+
+    interogate_params[:dhcp_fingerprint] = interogate_params[:dhcp_fingerprint] || ""
+    interogate_params[:user_agent] = interogate_params[:user_agent] || ""
+    interogate_params[:dhcp_vendor] = interogate_params[:dhcp_vendor] || ""
+    interogate_params[:mac] = interogate_params[:mac] || ""
+
     puts interogate_params
 
     if interogate_params[:user_agent].blank? && interogate_params[:dhcp_fingerprint].blank? && interogate_params[:dhcp_vendor].blank? && interogate_params[:mac].blank?
@@ -33,10 +40,10 @@ class Api::V1::CombinationsController < Api::ApiController
       matched = matched.sort{|a,b| a.score <=> b.score}
       matched.each do |combination|
         count = 0
-        count +=1 if(user_agent == combination.user_agent && interogate_params[:user_agent])  
-        count +=1 if(dhcp_fingerprint == combination.dhcp_fingerprint && interogate_params[:dhcp_fingerprint])
-        count +=1 if(dhcp_vendor == combination.dhcp_vendor && interogate_params[:dhcp_vendor])
-        count +=1 if(mac_vendor == combination.mac_vendor && interogate_params[:mac] && mac_vendor)
+        count +=1 if(user_agent == combination.user_agent && !interogate_params[:user_agent].blank?)  
+        count +=1 if(dhcp_fingerprint == combination.dhcp_fingerprint && !interogate_params[:dhcp_fingerprint].blank?)
+        count +=1 if(dhcp_vendor == combination.dhcp_vendor && !interogate_params[:dhcp_vendor].blank?)
+        count +=1 if(mac_vendor == combination.mac_vendor && !interogate_params[:mac].blank? && mac_vendor)
         if(count >= top_matched && count > 0)
           top = combination 
           top_matched = count
@@ -68,7 +75,7 @@ class Api::V1::CombinationsController < Api::ApiController
   end
 
   private
-    def interogate_params
+    def get_interogate_params
       params.permit(:user_agent, :dhcp_fingerprint, :dhcp_vendor, :mac)
     end
 
