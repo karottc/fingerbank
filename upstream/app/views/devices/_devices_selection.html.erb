@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <h5 id="device_display" ><%= selected ? selected.full_path : 'Not selected' %></h5>
-<button type="button" id="device_selection_button" class="btn btn-primary" data-toggle="modal" data-target="#device_selection_modal">
+<button type="button" id="device_selection_button" class="btn btn-primary" >
   Select Device 
 </button>
 
@@ -27,6 +27,9 @@
 </div>
 
 <script>
+  $('#device_selection_button').on('click', function(){
+    $('#device_selection_modal').modal('show')
+  });
   $('#device_selection_modal').on('show.bs.modal', function () {
     $('.modal-body').css('height',$( window ).height()*0.6);
   });
