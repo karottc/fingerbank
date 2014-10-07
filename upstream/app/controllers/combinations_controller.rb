@@ -48,12 +48,25 @@ class CombinationsController < ApplicationController
   end
 
   def unknown
-    @combinations = Combination.unknown.paginate(:page => params[:page]) 
+    if params[:search]
+      @search = escaped_search
+      @selected_fields = params[:fields]
+      @combinations = Combination.search(params[:search], @selected_fields, "AND device_id IS NULL").paginate(:page => params[:page])
+    else
+      @combinations = Combination.unknown.paginate(:page => params[:page]) 
+    end
     render 'index'
   end
 
   def unrated
-    @combinations = Combination.unrated.paginate(:page => params[:page]) 
+
+    if params[:search]
+      @search = escaped_search
+      @selected_fields = params[:fields]
+      @combinations = Combination.search(params[:search], @selected_fields, "AND device_id IS NOT NULL AND score=0").paginate(:page => params[:page])
+    else
+      @combinations = Combination.unrated.paginate(:page => params[:page]) 
+    end
     render 'index'
   end
 

@@ -36,7 +36,7 @@ class Combination < ActiveRecord::Base
 #
 #  end
 
-  def self.search(what, fields )
+  def self.search(what, fields, add_query = "")
     query = ""
     default_fields = ['dhcp_fingerprint', 'user_agent', 'dhcp_vendor', 'mac_vendor', 'device']
     fields = default_fields if fields.nil?
@@ -67,7 +67,7 @@ class Combination < ActiveRecord::Base
     join = join.joins('left outer join mac_vendors on mac_vendors.id = combinations.mac_vendor_id')
     join = join.joins('left outer join devices on devices.id = combinations.device_id')
     
-    results = join.where(query, *params) 
+    results = join.where("(#{query}) #{add_query}", *params) 
 
   end
 
