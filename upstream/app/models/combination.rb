@@ -122,10 +122,10 @@ class Combination < ActiveRecord::Base
       # no choice really
       # leave as is 
     else
-      device = discoverer_detected_device 
-      score = new_score unless new_score.nil?
-      find_version  
-      puts device ? "Detected device "+device.full_path : "Unknown device"
+      self.device = discoverer_detected_device 
+      self.score = new_score unless new_score.nil?
+      find_version
+      puts self.device.nil? ? "Unknown device" : "Detected device "+self.device.full_path  
       puts "Score "+score.to_s
       puts version ? "Version "+version : "Unknown version"
     end
@@ -158,6 +158,10 @@ class Combination < ActiveRecord::Base
   end
 
   def find_version
+    if self.device.nil?
+      puts "device is nil"
+      return
+    end
     discoverers = device.tree_discoverers
     valid_discoverers = []
     versions_discovered = {} 
