@@ -1,8 +1,10 @@
 <div>
-  <%= link_to 'Submit a combination', new_combination_path, :class => 'btn btn-primary' %>
-  <%= link_to 'See unknown', unknown_combinations_path, :class => 'btn btn-primary' %>
-  <%= link_to 'See unrated', unrated_combinations_path, :class => 'btn btn-primary' %>
+  
+  <%= link_to 'Known combinations', combinations_path, :class => request.path == combinations_path ? 'btn btn-primary active' : 'btn btn-primary' %>
+  <%= link_to 'See unknown', unknown_combinations_path, :class => request.path == unknown_combinations_path ? 'btn btn-primary active' : 'btn btn-primary' %>
+  <%= link_to 'See unrated', unrated_combinations_path, :class => request.path == unrated_combinations_path ? 'btn btn-primary active' : 'btn btn-primary' %>
 
+  <%= link_to 'Submit a combination', new_combination_path, :class => 'btn btn-primary pull-right' %>
 </div>
 
 <%= render :partial => 'search' %>
