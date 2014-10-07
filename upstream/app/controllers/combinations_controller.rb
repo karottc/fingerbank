@@ -84,7 +84,7 @@ class CombinationsController < ApplicationController
   def calculate 
     begin
       @combination.process
-      flash[:success] = "Combination was processed sucessfully. Yielded (Device='#{@combination.device.full_path}', Version='#{@combination.version}')"
+      flash[:success] = "Combination was processed sucessfully. Yielded (Device='#{@combination.device.nil? ? "Unknown" : @combination.device.full_path}', Version='#{@combination.version}')"
       redirect_to :back
     rescue Exception => e
       flash[:error] = "An error happened while processing this combination. #{e.message}"
