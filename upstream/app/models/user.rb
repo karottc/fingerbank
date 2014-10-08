@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   def generate_key
     require 'digest/sha1'
     self.key = Digest::SHA1.hexdigest "API-#{Time.now}-#{github_uid}"
+    self.save
   end
 
   def add_request
