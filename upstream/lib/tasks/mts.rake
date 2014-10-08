@@ -21,8 +21,8 @@ namespace :mts do
     
     orig = SQLite3::Database.open "result.db"
     stm = orig.prepare "select  dhcp.hash, mac.vendor, dhcp.finger,dhcp.vendor_id, http.ua, dhcp.detect, mac.mac from dhcp 
-                        inner join http on dhcp.mac=http.mac 
-                        inner join mac on dhcp.mac = mac.mac"
+                        left join http on dhcp.mac=http.mac 
+                        left join mac on dhcp.mac = mac.mac"
 
     result = stm.execute
 
