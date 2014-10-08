@@ -1,5 +1,6 @@
 class RulesController < ApplicationController
   before_action :set_rule, only: [:show, :edit, :update, :destroy]
+  before_action :set_show_help, only: [:show]
 
   # GET /rules
   # GET /rules.json
@@ -116,5 +117,16 @@ class RulesController < ApplicationController
     # permit an version_discoverer_id to be passed for smoother creation
     def device_discoverer_id_param
       params[:device_discoverer_id]
+    end
+
+    def set_show_help
+      @help = %Q(This page shows what the rule is matching.
+                 The rules use the SQL syntax and are injected into a query to perform the match.
+                 The tables available for the match are : dhcp_fingerprints, dhcp_vendors, user_agents, mac_vendors
+                 For more information on the fields, refer to the SQL schema.
+                 The value is the raw stored query that may contain additionnal variables that are conditions.
+                 The device/version discoverer is it's associated discoverer.
+                 The computed value is the end SQL that will be injected in the query.
+      )
     end
 end

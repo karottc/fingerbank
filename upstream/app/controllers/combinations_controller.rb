@@ -1,5 +1,7 @@
 class CombinationsController < ApplicationController
   before_action :set_combination, only: [:show, :edit, :update, :destroy, :calculate]
+  before_action :set_index_help, only: [:index, :unknown, :unrated]
+  before_action :set_submit_help, only: [:new, :create]
 
   skip_before_filter :ensure_admin, :only => [:new, :create, :unknown, :unrated, :interogate]
   before_filter :ensure_community, :only => [:new, :create]
@@ -48,6 +50,7 @@ class CombinationsController < ApplicationController
   end
 
   def unknown
+    @help += "The unknown combinations that you see here haven't been sorted yet."
     if params[:search]
       @search = escaped_search
       @selected_fields = params[:fields]
@@ -59,7 +62,7 @@ class CombinationsController < ApplicationController
   end
 
   def unrated
-
+    @help += "The unrated combinations that you see here have been submitted by the community but haven't been approved yet."
     if params[:search]
       @search = escaped_search
       @selected_fields = params[:fields]
@@ -173,6 +176,19 @@ class CombinationsController < ApplicationController
       params.require(:combination).permit(:version, :score, :user_agent_id, :dhcp_fingerprint_id, :dhcp_vendor_id, :device_id, :user_agent_value, :dhcp_fingerprint_value, :dhcp_vendor_value, :mac_value)
     end
 
+    def set_index_help
+      @help = %Q(A combination is a set composed of a DHCP fingerprint, DHCP vendor, User Agent and a MAC vendor.
+        These combinations have an associated device (usually representing the OS) and OS version.
+        You can submit an unknown combination using the 'Submit Combination' button.
+        )
+    end
+
+    def set_submit_help
+      @help = %Q(Here you can submit a combination that you have.
+                 If you can't find your device in the list, feel free to add it by clicking the 'Not listed ?' link
+                 Enter the information that you have for the device. If some information is missing, simply leave it empty.
+      )
+    end
 
 
 end
