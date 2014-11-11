@@ -2,16 +2,13 @@
 @import "bootstrap";
 
 body{
-  width:1200px;
-  margin:auto;
+  margin:1em;
 }
 
 table{
   margin:auto;
   table-layout:fixed;
-  max-width:1200px;
   display:block;
-  overflow-x:scroll;
 }
 
 th{

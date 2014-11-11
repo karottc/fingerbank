@@ -180,6 +180,10 @@ class CombinationsController < ApplicationController
       @help = %Q(A combination is a set composed of a DHCP fingerprint, DHCP vendor, User Agent and a MAC vendor.
         These combinations have an associated device (usually representing the OS) and OS version.
         You can submit an unknown combination using the 'Submit Combination' button.
+        Search:
+        By default, the search uses a like to match the entries. This means that it searches for partial matching.
+        To have your query match the beginning add ^ at the beginning of your query.
+        To have your query match the end add $ at the end of your query.
         )
     end
 

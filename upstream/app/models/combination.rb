@@ -72,10 +72,22 @@ class Combination < ActiveRecord::Base
   end
 
   def self.add_where(field, what, started)
-    if started
-      return "OR #{field} LIKE ? ", "%#{what}%"
+    if what.end_with?('$')
+      what = what.chop
     else
-      return "#{field} LIKE ? ", "%#{what}%"
+      what = "#{what}%"
+    end
+
+    if what.start_with?('^')
+      what.slice!(0)
+    else
+      what = "%#{what}"
+    end
+
+    if started
+      return "OR #{field} LIKE ? ", what
+    else
+      return "#{field} LIKE ? ", what
     end
   end
 
@@ -132,6 +144,42 @@ class Combination < ActiveRecord::Base
     save!
   end
 
+  def matches_discoverer?(discoverer)
+    matches = []
+    discoverer.device_rules.each do |rule|
+      computed = rule.computed
+      sql = "SELECT combinations.id from combinations 
+              inner join user_agents on user_agents.id=combinations.user_agent_id 
+              inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
+              inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
+              left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
+              WHERE (combinations.id=#{id}) AND #{computed};"
+      records = ActiveRecord::Base.connection.execute(sql)
+      unless records.size == 0
+        matches.push rule
+        puts "Matched OS rule in #{discoverer.id}"
+      end
+    end
+
+    discoverer.version_rules.each do |rule|
+      computed = rule.computed
+      sql = "SELECT combinations.id from combinations 
+              inner join user_agents on user_agents.id=combinations.user_agent_id 
+              inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
+              inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
+              left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
+              WHERE (combinations.id=#{id}) AND #{computed};"
+      records = ActiveRecord::Base.connection.execute(sql)
+      unless records.size == 0
+        matches.push rule
+        puts "Matched OS rule in #{discoverer.id}"
+      end
+    end
+
+    return !matches.empty?
+
+  end
+
   def find_matching_discoverers
     valid_discoverers = []
     Discoverer.all.each do |discoverer|
@@ -142,7 +190,7 @@ class Combination < ActiveRecord::Base
                 inner join user_agents on user_agents.id=combinations.user_agent_id 
                 inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
                 inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
-                inner join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
+                left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
                 WHERE (combinations.id=#{id}) AND #{computed};"
         records = ActiveRecord::Base.connection.execute(sql)
         unless records.size == 0
@@ -174,7 +222,7 @@ class Combination < ActiveRecord::Base
                 inner join user_agents on user_agents.id=combinations.user_agent_id 
                 inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
                 inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
-                inner join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
+                left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
                 WHERE (combinations.id=#{id}) AND #{computed};"
         records = ActiveRecord::Base.connection.execute(sql)
         unless records.size == 0

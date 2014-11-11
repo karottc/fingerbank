@@ -72,7 +72,7 @@ namespace :db do
 
   task :sort_combination, [:combination_id] => [:environment] do |t, args|
     if args[:combination_id].nil?
-      combinations = Combination.all
+      combinations = Combination.where(:device => nil)
     else
       combinations = [Combination.find(args[:combination_id])]
     end
@@ -80,6 +80,23 @@ namespace :db do
     combinations.each do |combination| 
       combination.process
     end
+  end
+
+  task :reevaluate_for_discoverer, [:discoverer_id] => [:environment] do |t, args|
+    if args[:discoverer_id].nil?
+      puts "Missing discoverer id"
+      next
+    end
+
+    discoverer = Discoverer.find args[:discoverer_id]
+
+    Combination.all.each do |combination|
+      if combination.matches_discoverer?(discoverer)
+        puts "Combination #{combination.id} matches. Reprocessing"
+        combination.process
+      end
+    end
+    
   end
 
   task import_pf_oui: :environment do
