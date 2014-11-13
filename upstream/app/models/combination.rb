@@ -116,7 +116,7 @@ class Combination < ActiveRecord::Base
     end
   end
 
-  def process
+  def process(with_version = true)
     discoverer_detected_device = nil
     new_score = nil
     discoverers_match = find_matching_discoverers
@@ -130,16 +130,18 @@ class Combination < ActiveRecord::Base
       puts "empty rules"
     end 
 
-    if discoverer_detected_device.nil?
-      # no choice really
-      # leave as is 
-    else
-      self.device = discoverer_detected_device 
-      self.score = new_score unless new_score.nil?
-      find_version
-      puts self.device.nil? ? "Unknown device" : "Detected device "+self.device.full_path  
-      puts "Score "+score.to_s
-      puts version ? "Version "+version : "Unknown version"
+    if with_version
+      if discoverer_detected_device.nil?
+        # no choice really
+        # leave as is 
+      else
+        self.device = discoverer_detected_device 
+        self.score = new_score unless new_score.nil?
+        find_version
+        puts self.device.nil? ? "Unknown device" : "Detected device "+self.device.full_path  
+        puts "Score "+score.to_s
+        puts version ? "Version "+version : "Unknown version"
+      end
     end
     save!
   end

@@ -82,6 +82,18 @@ namespace :db do
     end
   end
 
+  task :sort_combination_no_version, [:combination_id] => [:environment] do |t, args|
+    if args[:combination_id].nil?
+      combinations = Combination.where(:device => nil)
+    else
+      combinations = [Combination.find(args[:combination_id])]
+    end
+
+    combinations.each do |combination| 
+      combination.process false
+    end
+  end
+
   task :reevaluate_for_discoverer, [:discoverer_id] => [:environment] do |t, args|
     if args[:discoverer_id].nil?
       puts "Missing discoverer id"

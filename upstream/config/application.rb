@@ -24,5 +24,7 @@ module RailsFingerbank
 
     Sunspot.config.pagination.default_per_page = 15
 
+    config.autoload_paths += Dir["#{config.root}/app/sweepers/**/"]
+
   end
 end

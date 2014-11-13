@@ -19,6 +19,7 @@ class DevicesController < ApplicationController
   def approve
     @device.approved = true
     @device.save
+    expire_device_tree @device
 
     flash[:notice] = "Device has been approved"
     redirect_to :back
@@ -70,6 +71,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.save
+        expire_device_tree @device
         format.html { redirect_to @device, notice: 'Great success. Device was successfully created.' }
         format.json { render :show, status: :created, location: @device }
       else
@@ -85,6 +87,7 @@ class DevicesController < ApplicationController
 
     respond_to do |format|
       if @device.update(device_params)
+        expire_device_tree(@device)
         format.html { redirect_to @device, notice: 'Great success. Device was successfully updated.' }
         format.json { render :show, status: :ok, location: @device }
       else
@@ -98,9 +101,20 @@ class DevicesController < ApplicationController
   # DELETE /device/1.json
   def destroy
     @device.destroy
+    expire_device_tree @device
     respond_to do |format|
       format.html { redirect_to devices_url, notice: 'Great success. Device was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def expire_device_tree(device)
+    DevicesController.action_methods.each do |method|
+      expire_fragment("#{method}-device-#{device.id}")
+    end
+    expire_fragment("device-selection-#{device.id}")
+    device.parents.each do |parent|
+      expire_device_tree(parent)
     end
   end
 
@@ -127,4 +141,6 @@ class DevicesController < ApplicationController
                  Also listed below are the matching combinations in the Fingerbank database that belong to this device.
       )
     end
+    
+
 end

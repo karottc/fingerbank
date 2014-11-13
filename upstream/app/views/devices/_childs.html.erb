@@ -1,6 +1,8 @@
-<ul>
-<%= render device %>
-<% device.device.order(:name).each do |child| %>
-  <%= render :partial => 'devices/childs', :locals => {:device => child} %>
+<% cache("#{action_name}-device-#{device.id}") do %>
+  <ul>
+  <%= render device %>
+  <% device.device.order(:name).each do |child| %>
+    <%= render :partial => 'devices/childs', :locals => {:device => child} %>
+  <% end %>
+  </ul>
 <% end %>
-</ul>

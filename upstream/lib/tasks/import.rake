@@ -1,5 +1,96 @@
+require 'iconv'
 
 namespace :import do
+
+  task :android_models, [:file_path] => [:environment] do |t, args|
+    ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+    if args[:file_path].nil?
+      puts "No file specified. Exiting"
+      next
+    end
+  
+    line_num=0
+    text=File.open('tmp/android_models.txt').read
+    text.gsub!(/\r\n?/, "\n")
+    state = "looking_for_manufacturer"
+    manufacturer = ""
+    generic_android = Device.where(:name => "Generic Android").first
+    count = 0
+    text.each_line do |line|
+      line.gsub!(/\n/, "")
+      line.gsub!(/^ */, "")
+      #puts "LINE = #{line}"
+      #puts "MANUFACTURER = #{manufacturer}"
+      #puts "STATE = #{state}"
+      #$stdin.read
+      if state == "looking_for_manufacturer" and !line.empty?
+        state = "looking_for_device"
+        #manufacturer = line
+        manufacturer = Device.where('lower(name) = ?',  "#{line} Android".downcase).first
+        if manufacturer.nil?
+          puts "Manufacturer #{line} Android doesn't exists"
+          manufacturer = Device.create!(:name => "#{line} Android", :parent => generic_android, :inherit => true)
+          puts "Created manufacturer #{manufacturer.name}"
+        else
+          puts "Manufacturer #{manufacturer.name} exists"
+        end
+      elsif state == "looking_for_device" or state=="parsing_devices" and !line.empty?
+        state = "parsing_devices"
+        count += 1
+        puts "#{line}"
+        data = line.split('(')
+        name = data[0]
+        name = ic.iconv(name + ' ')[0..-2]
+        name.gsub!(/ *$/, "")
+        puts "'#{name}'"
+
+        device = Device.where('lower(name) = ?', name.downcase).first
+        if device.nil?
+          puts "Device #{name} doesn't exist yet. Creating it"
+          device = Device.create!(:name => name, :parent => manufacturer, :inherit => true)
+        else
+          puts "Device #{name} exists"
+        end
+
+        unless data[1].nil?
+          model_info = data[1].split('/')
+          unless model_info[1].nil?
+            model_number = model_info[1].sub(/\)/, '') 
+            model_number = model_number.sub('\'', '\'\'') 
+            model_number = ic.iconv(model_number + ' ')[0..-2]
+            discoverer = Discoverer.where(:device => device).where("lower(description) = ?", "#{name} from model # on User Agent".downcase).first
+            unless discoverer.nil?
+              rule_already_in = false
+              discoverer.device_rules.each do |rule|
+                if rule.value == "user_agents.value LIKE '% #{model_number} %'"
+                  rule_already_in = true
+                  break
+                end
+              end
+    
+              unless rule_already_in
+                puts "Adding rule for model # #{model_number} to device #{device.name}"
+                rule = Rule.create!(:value => "user_agents.value LIKE '% #{model_number} %'", :device_discoverer => discoverer)
+              end
+            else
+              discoverer = Discoverer.create!(:description => "#{name} from model # on User Agent", :priority => 5, :device => device)
+              puts "Adding rule for model # #{model_number} to device #{device.name}"
+              rule = Rule.create!(:value => "user_agents.value LIKE '% #{model_number} %'", :device_discoverer => discoverer)
+            end
+
+          end
+        end
+
+      elsif state == "parsing_devices" and line.empty?
+        state = "looking_for_manufacturer"
+      end
+    end
+
+    puts count
+   
+  end
+
+
 
   task :merge_stats, [:db_path] => [:environment] do |t, args|
 
