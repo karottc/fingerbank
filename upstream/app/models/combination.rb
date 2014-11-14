@@ -234,39 +234,72 @@ class Combination < ActiveRecord::Base
     return Rails.cache.read("device_matching_discoverers") 
   end
 
+  def if_for_query(query, started)
+    if started
+      return "IF(#{query}, 1, 0), "
+    else
+      return "IF(#{query}, 1, 0) "
+    end
+  end
+
   def find_matching_discoverers
     valid_discoverers = []
-    Discoverer.all.each do |discoverer|
-      matches = []
+    temp_combination = TempCombination.create!(:dhcp_fingerprint => dhcp_fingerprint.value, :user_agent => user_agent.value, :dhcp_vendor => dhcp_vendor.value)
+    ifs_started = false
+    ifs = FingerbankCache.get("ifs_for_discoverers") || ""
+    conditions = FingerbankCache.get("ifs_association_for_discoverers") || []
 
-      query = ""
-      started = false
+    if ifs.empty? || conditions.empty?
+      ifs = ""
+      conditions = []
+      Discoverer.all.each do |discoverer|
 
-      discoverer.device_rules.each do |rule|
-        to_add = Combination.add_condition rule.computed, started
-        
-        query += to_add
-        started = true
+        query = ""
+        started = false
+
+        discoverer.device_rules.each do |rule|
+          to_add = rule.computed.gsub('dhcp_fingerprints.value', 'dhcp_fingerprint')
+          to_add = to_add.gsub('user_agents.value', 'user_agent')
+          to_add = to_add.gsub('dhcp_vendors.value', 'dhcp_vendor')
+          to_add = Combination.add_condition to_add, started
+          
+          query += to_add
+          started = true
+        end
+    
+        unless query.empty?
+          ifs.prepend(if_for_query(query, ifs_started))
+          conditions.unshift discoverer
+          ifs_started = true
+        end
+      end    
+      success = FingerbankCache.set("ifs_for_discoverers", ifs)
+      puts "wrinting ifs for discoverers gave #{success}"
+      success = FingerbankCache.set("ifs_association_for_discoverers", conditions)
+      puts "wrinting ifs conditions for discoverers gave #{success}"
+
+    end
+
+    matches = []
+    unless ifs.empty?
+      sql = "SELECT #{ifs} from temp_combinations 
+              WHERE (id=#{temp_combination.id});"
+      records = ActiveRecord::Base.connection.execute(sql)
+      count = 0 
+      records.each do |record|
+        while !record[count].nil?
+          if record[count] == 1
+            discoverer = conditions[-count]
+            matches.push discoverer
+            puts "Matched OS rule in #{discoverer.id}"
+          end
+          count+=1
+        end
       end
 
-      unless query.empty?
-        sql = "SELECT combinations.id from combinations 
-                inner join user_agents on user_agents.id=combinations.user_agent_id 
-                inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
-                inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
-                left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
-                WHERE (combinations.id=#{id}) AND (#{query});"
-        records = ActiveRecord::Base.connection.execute(sql)
-        unless records.size == 0
-          matches.push 1 
-          puts "Matched OS rule in #{discoverer.id}"
-        end
+    end
 
-        unless matches.empty?
-          valid_discoverers.push discoverer
-        end
-      end
-    end    
+    temp_combination.delete
     valid_discoverers
   end
 
