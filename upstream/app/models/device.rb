@@ -26,7 +26,7 @@ class Device < ActiveRecord::Base
 
   def tree_discoverers
     discoverers = []
-    top_level_parent.self_and_childs.flatten.each do |device|
+    [parents, self].flatten.each do |device|
       discoverers.push device.discoverers
     end
     discoverers.flatten

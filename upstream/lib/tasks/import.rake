@@ -143,7 +143,6 @@ namespace :import do
       combination.save
       combination = Combination.where(:user_agent => user_agent, :dhcp_fingerprint => dhcp_fingerprint, :dhcp_vendor => dhcp_vendor, :mac_vendor => combination.mac_vendor).first
 
-      combination.process if combination.device.nil?
       count+=1
 
     end

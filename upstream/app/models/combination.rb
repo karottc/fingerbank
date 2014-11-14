@@ -85,11 +85,13 @@ class Combination < ActiveRecord::Base
     end
 
     if started
-      return "OR #{field} LIKE ? ", what
+      return "or #{field} like ? ", what
     else
-      return "#{field} LIKE ? ", what
+      return "#{field} like ? ", what
     end
   end
+
+
 
   def validate_combination_uniqueness
     existing = Combination.where(:dhcp_fingerprint_id => dhcp_fingerprint_id, :user_agent_id => user_agent_id, :dhcp_vendor_id => dhcp_vendor_id, :mac_vendor_id => mac_vendor_id).size
@@ -116,27 +118,27 @@ class Combination < ActiveRecord::Base
     end
   end
 
-  def process(with_version = true)
+  def process(options = {:with_version => false})
     discoverer_detected_device = nil
     new_score = nil
-    discoverers_match = find_matching_discoverers
+    discoverers_match = Combination.device_matching_discoverers[id]
     unless discoverers_match.empty?
       deepest = 0
       discoverers = discoverers_match 
       scores = Combination.score_from_discoverers discoverers
       discoverer_detected_device, new_score = (scores.sort_by {|key, value| value}).last
-    
+      puts "found #{discoverer_detected_device}"
+      self.device = discoverer_detected_device 
+      self.score = new_score unless new_score.nil?
     else
-      puts "empty rules"
+      puts "empty rules for #{id}"
     end 
 
-    if with_version
+    if options[:with_version]
       if discoverer_detected_device.nil?
         # no choice really
         # leave as is 
       else
-        self.device = discoverer_detected_device 
-        self.score = new_score unless new_score.nil?
         find_version
         puts self.device.nil? ? "Unknown device" : "Detected device "+self.device.full_path  
         puts "Score "+score.to_s
@@ -182,26 +184,87 @@ class Combination < ActiveRecord::Base
 
   end
 
-  def find_matching_discoverers
-    valid_discoverers = []
+  def self.device_matching_discoverers
+    # we use the unserialized cache (pretty much a global variable)
+    if Rails.application.config.matching_discoverers
+      return Rails.application.config.matching_discoverers
+    # we fallback to the cache that lives across the instances
+    elsif Rails.cache.read("device_matching_discoverers")
+      Rails.application.config.matching_discoverers = Rails.cache.read("device_matching_discoverers")
+      return Rails.application.config.matching_discoverers
+    end
+
+    # complete cache miss, we compute the data
+
+    combinations = {}
+    Combination.all.each do |c|
+      combinations[c.id] = []
+    end
     Discoverer.all.each do |discoverer|
       matches = []
+
+      query = ""
+      started = false
+
       discoverer.device_rules.each do |rule|
-        computed = rule.computed
+        to_add = Combination.add_condition rule.computed, started
+        
+        query += to_add
+        started = true
+      end
+
+      unless query.empty?
         sql = "SELECT combinations.id from combinations 
                 inner join user_agents on user_agents.id=combinations.user_agent_id 
                 inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
                 inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
                 left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
-                WHERE (combinations.id=#{id}) AND #{computed};"
+                WHERE (#{query});"
+        records = ActiveRecord::Base.connection.execute(sql)
+        records.each do |record|
+          combinations[record[0]] << discoverer
+        end
+        puts "Found #{records.size} hits for discoverer #{discoverer.id}"
+      
+      end
+    end    
+    # We keep our result in the cache
+    success = Rails.cache.write("device_matching_discoverers", combinations)
+    puts "writing cache gave #{success}"
+    return Rails.cache.read("device_matching_discoverers") 
+  end
+
+  def find_matching_discoverers
+    valid_discoverers = []
+    Discoverer.all.each do |discoverer|
+      matches = []
+
+      query = ""
+      started = false
+
+      discoverer.device_rules.each do |rule|
+        to_add = Combination.add_condition rule.computed, started
+        
+        query += to_add
+        started = true
+      end
+
+      unless query.empty?
+        sql = "SELECT combinations.id from combinations 
+                inner join user_agents on user_agents.id=combinations.user_agent_id 
+                inner join dhcp_fingerprints on dhcp_fingerprints.id=combinations.dhcp_fingerprint_id
+                inner join dhcp_vendors on dhcp_vendors.id=combinations.dhcp_vendor_id
+                left join mac_vendors on mac_vendors.id=combinations.mac_vendor_id
+                WHERE (combinations.id=#{id}) AND (#{query});"
         records = ActiveRecord::Base.connection.execute(sql)
         unless records.size == 0
-          matches.push rule
+          matches.push 1 
           puts "Matched OS rule in #{discoverer.id}"
         end
-      end
-      unless matches.empty?
-        valid_discoverers.push discoverer
+
+        unless matches.empty?
+          valid_discoverers.push discoverer
+        end
       end
     end    
     valid_discoverers
@@ -238,7 +301,7 @@ class Combination < ActiveRecord::Base
         versions_discovered[discoverer.id] = version_discovered 
       end
     end
-    version_discoverer = valid_discoverers.sort{|a,b| a.priority <=> b.priority}.first
+    version_discoverer = valid_discoverers.sort{|a,b| a.priority <=> b.priority}.last
     self.version = versions_discovered[version_discoverer.id] unless version_discoverer.nil?
   end
 
@@ -253,7 +316,6 @@ class Combination < ActiveRecord::Base
     disc_per_device.each do |device, discoverers|
       total = device.discoverers.size
       matched = discoverers.size
-      ratio= matched / total
       
       score = 0
       discoverers.each{|discoverer| score += discoverer.priority}
@@ -269,4 +331,13 @@ class Combination < ActiveRecord::Base
     return score_per_device
   end
 
+  def self.add_condition(condition, started)
+    if started
+      return "or #{condition} " 
+    else
+      return "#{condition} "
+    end
+  end
+
 end
+

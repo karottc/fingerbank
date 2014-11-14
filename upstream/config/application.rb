@@ -26,5 +26,7 @@ module RailsFingerbank
 
     config.autoload_paths += Dir["#{config.root}/app/sweepers/**/"]
 
+    config.matching_discoverers = nil
+
   end
 end

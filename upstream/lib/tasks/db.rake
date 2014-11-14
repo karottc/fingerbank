@@ -72,25 +72,25 @@ namespace :db do
 
   task :sort_combination, [:combination_id] => [:environment] do |t, args|
     if args[:combination_id].nil?
-      combinations = Combination.where(:device => nil)
+      combinations = Combination.all
     else
       combinations = [Combination.find(args[:combination_id])]
     end
 
     combinations.each do |combination| 
-      combination.process
+      combination.process(:with_version => true)
     end
   end
 
   task :sort_combination_no_version, [:combination_id] => [:environment] do |t, args|
     if args[:combination_id].nil?
-      combinations = Combination.where(:device => nil)
+      combinations = Combination.all
     else
       combinations = [Combination.find(args[:combination_id])]
     end
 
     combinations.each do |combination| 
-      combination.process false
+      combination.process(:with_version => false)
     end
   end
 
