@@ -1,0 +1,14 @@
+<% unless @help.nil? %>
+  <a id="trigger_help" href="javascript:void(0)" class="btn btn-primary pull-right" style="margin-left:0.5em;margin-bottom:0.5em;">?</a>
+  <div class="alert alert-info help" style="display:none">
+    <%= @help.gsub!(/\n/, '<br/>').html_safe %>
+  </div>
+
+<script type="text/javascript">
+  $('#trigger_help').click(function(){
+    $('#trigger_help').hide(function(){
+      $('.help').slideDown()
+    })
+  })
+</script>
+<% end %>

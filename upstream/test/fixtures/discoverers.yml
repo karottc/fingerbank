@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  os_id: 1
+  os_rule_id: 1
+  version_rule_id: 1
+
+two:
+  os_id: 1
+  os_rule_id: 1
+  version_rule_id: 1

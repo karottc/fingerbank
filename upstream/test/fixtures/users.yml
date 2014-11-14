@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  github_uid: MyString
+  name: MyString
+  display_name: MyString
+  level: 1
+
+two:
+  github_uid: MyString
+  name: MyString
+  display_name: MyString
+  level: 1

@@ -1,0 +1,27 @@
+<h1>Listing mac_vendors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Mac</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mac_vendors.each do |mac_vendor| %>
+      <tr>
+        <td><%= mac_vendor.name %></td>
+        <td><%= mac_vendor.mac %></td>
+        <td><%= link_to 'Show', mac_vendor %></td>
+        <td><%= link_to 'Edit', edit_mac_vendor_path(mac_vendor) %></td>
+        <td><%= link_to 'Destroy', mac_vendor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mac vendor', new_mac_vendor_path %>

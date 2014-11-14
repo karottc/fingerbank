@@ -1,0 +1,27 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <%= link_to "Fingerbank", root_path, :class => "navbar-brand" %>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Combinations", combinations_path %></li>
+      <li><%= link_to "Devices", devices_path %></li>
+      <li><%= link_to "Discoverers", discoverers_path %></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "API quick guide", api_doc_path %></li>
+      <li><%= link_to "Download Fingerbank", download_path %></li>
+      <% if @current_user %>
+        <li><%= link_to "Logged in as #{@current_user.name}", user_path(@current_user) %> </li>
+        <li><%= link_to "Logout", logout_path %></li>
+      <% else %>
+        <li>
+          <a href="<%= login_path %>">
+            Login using Github
+            <%= image_tag "github.png", :size => '17x17' %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Description</th>
+      <th>For Device</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discoverers.each do |discoverer| %>
+      <tr>
+        <td>
+          <%= link_to '', discoverer, :class => "btn-show" %>
+          <%= link_to '', edit_discoverer_path(discoverer), :class => "btn-edit" if current_user_admin? %>
+          <%= link_to '', discoverer, method: :delete, :data => { confirm: 'Are you sure?' }, :class => "btn-delete" if current_user_admin? %>
+        </td>
+        <td><%= discoverer.description %></td>
+        <td><%= discoverer.device.name unless discoverer.device.nil? %></td> 
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discoverer', new_discoverer_path %>

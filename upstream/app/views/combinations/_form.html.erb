@@ -1,0 +1,41 @@
+<%= form_for(@combination) do |f| %>
+  <% if @combination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@combination.errors.count, "error") %> prohibited this combination from being saved:</h2>
+
+      <ul>
+      <% @combination.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <p>User Agent : <%= @combination.user_agent.value %></p>
+    <p>DhcpFingerprint : <%= @combination.dhcp_fingerprint.value %></p>
+    <p>DHCP vendor : <%= @combination.dhcp_vendor.value %></p>
+    <p>MAC vendor :
+    <% if @combination.mac_vendor %>
+      <%= @combination.mac_vendor.name %> (<%= @combination.mac_vendor.mac %>)
+    <% end %>
+    </>
+  </div>
+
+  <div class="field">
+    <%= f.label "Associated device" %><br/>
+    <%= f.hidden_field :device_id %>
+    <%= render :partial => 'devices/devices_selection', :locals => {:set => '#combination_device_id', :selected => @combination.device} %>
+  </div>
+  <div class="field">
+    <%= f.label :version %><br>
+    <%= f.text_field :version %>
+  </div>
+  <div class="field">
+    <%= f.label :score %><br>
+    <%= f.number_field :score %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

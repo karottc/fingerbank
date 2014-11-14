@@ -1,0 +1,22 @@
+<%= form_for(@dhcp_fingerprint) do |f| %>
+  <% if @dhcp_fingerprint.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dhcp_fingerprint.errors.count, "error") %> prohibited this dhcp_fingerprint from being saved:</h2>
+
+      <ul>
+      <% @dhcp_fingerprint.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %>
+    <%= f.text_field :value %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

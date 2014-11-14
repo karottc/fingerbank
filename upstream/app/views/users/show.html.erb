@@ -1,0 +1,23 @@
+<p>
+  <strong>Github user ID:</strong>
+  <%= @user.github_uid %>
+</p>
+<p>
+  <strong>Username:</strong>
+  <%= @user.name %>
+</p>
+<p>
+  <strong>Display name:</strong>
+  <%= @user.display_name %>
+</p>
+<p>
+  <strong>API key:</strong>
+  <%= @user.key %>
+</p>
+<p>
+  <strong>Number of requests:</strong>
+  <%= @user.requests %>
+</p>
+
+<%= link_to "Generate key", generate_key_user_path(@user) %>
+<%= link_to "Manage other users", users_path if current_user_admin? %>
